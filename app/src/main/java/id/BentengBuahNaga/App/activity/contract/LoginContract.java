@@ -3,7 +3,7 @@ package id.BentengBuahNaga.App.activity.contract;
 public interface LoginContract {
     interface Model {
 
-        String getUsername();
+
     }
 
     interface View {
@@ -11,10 +11,16 @@ public interface LoginContract {
         void loginBerhasil();
 
         void loginGagal();
+
+        void usernameSalah();
+
+        void MasukHalamanDaftar();
     }
 
     interface Presenter {
 
-        void cekLogin();
+        void cekLogin(String username);
+
+        void tombolDaftar();
     }
 }

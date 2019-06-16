@@ -1,8 +1,10 @@
 package id.BentengBuahNaga.App.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,16 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.contract.LoginContract;
 import id.BentengBuahNaga.App.activity.presenter.LoginPresenter;
+import id.BentengBuahNaga.App.helper.PindahActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private static final String TAG = "LoginActivity";
+    private Context mContext;
     private LoginPresenter presenter;
-    private Button login;
+    private Button masuk;
+    private Button daftar;
+    private EditText username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mContext = this;
 
         initView();
         initButton();
@@ -27,32 +35,52 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     private void initView() {
-        login = findViewById(R.id.login);
+        username = findViewById(R.id.username);
+        masuk = findViewById(R.id.login);
+        daftar = findViewById(R.id.daftar);
         presenter = new LoginPresenter(this);
 
     }
 
     private void initButton() {
 
-        login.setOnClickListener(new View.OnClickListener() {
+        masuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.cekLogin();
+
+                String user = username.getText().toString();
+
+                presenter.cekLogin(user);
+            }
+        });
+
+        daftar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.tombolDaftar();
             }
         });
     }
 
     @Override
     public void loginBerhasil() {
-
         Toast.makeText(this, "Login Succes", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void loginGagal() {
-
         Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public void usernameSalah() {
+        Toast.makeText(this, "Username Salah", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void MasukHalamanDaftar() {
+        PindahActivity.pindahActivity(mContext, RegisterActivity.class);
     }
 }
