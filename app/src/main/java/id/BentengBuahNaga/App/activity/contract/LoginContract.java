@@ -23,6 +23,5 @@ public interface LoginContract {
 
         void tombolDaftar();
 
-        void coba();
     }
 }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "170838304337",
+    "firebase_url": "https://dragonnotif.firebaseio.com",
+    "project_id": "dragonnotif",
+    "storage_bucket": "dragonnotif.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170838304337:android:aea86b470b073730",
+        "android_client_info": {
+          "package_name": "id.BentengBuahNaga.App"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170838304337-dfdc9jot2i5cl63921t0gsl9k41k0n9s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5cwhaXktVFonmlUBMzWnYRFGW50zjjTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170838304337-dfdc9jot2i5cl63921t0gsl9k41k0n9s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
