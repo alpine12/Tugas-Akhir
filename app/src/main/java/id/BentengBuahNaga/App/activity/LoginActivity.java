@@ -13,6 +13,7 @@ import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.contract.LoginContract;
 import id.BentengBuahNaga.App.activity.presenter.LoginPresenter;
 import id.BentengBuahNaga.App.helper.PindahActivity;
+import id.BentengBuahNaga.App.services.FirebaseCloudMessaging;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private static final String TAG = "LoginActivity";
@@ -82,5 +83,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void MasukHalamanDaftar() {
         PindahActivity.pindahActivity(mContext, RegisterActivity.class);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 }
