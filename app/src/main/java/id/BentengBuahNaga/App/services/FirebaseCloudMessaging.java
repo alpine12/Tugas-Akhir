@@ -6,7 +6,9 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import id.BentengBuahNaga.App.activity.LoginActivity;
 import id.BentengBuahNaga.App.activity.presenter.LoginPresenter;
+import id.BentengBuahNaga.App.aplication.App;
 
 public class FirebaseCloudMessaging extends FirebaseMessagingService {
     private static final String TAG = "FirebaseCloudMessaging";
@@ -50,6 +52,15 @@ public class FirebaseCloudMessaging extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
 
+            if (App.getInstance().getCurrentactivity() != null && App.getInstance().getCurrentactivity() instanceof
+                    LoginActivity) {
+                ((LoginActivity) App.getInstance().getCurrentactivity()).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ((LoginActivity) App.getInstance().getCurrentactivity()).Toas("mesage");
+                    }
+                });
+            }
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM

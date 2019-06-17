@@ -22,5 +22,7 @@ public interface LoginContract {
         void cekLogin(String username);
 
         void tombolDaftar();
+
+        void coba();
     }
 }

@@ -28,4 +28,9 @@ public class LoginPresenter implements LoginContract.Presenter {
     public void tombolDaftar() {
         view.MasukHalamanDaftar();
     }
+
+    @Override
+    public void coba() {
+        view.MasukHalamanDaftar();
+    }
 }
