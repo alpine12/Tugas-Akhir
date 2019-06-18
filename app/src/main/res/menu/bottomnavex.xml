@@ -4,7 +4,8 @@
     <item
         android:id="@+id/beranda"
         android:title="Beranda"
-        android:icon="@drawable/ic_beranda"/>
+        android:icon="@drawable/ic_beranda"
+        android:iconTint="@color/black"/>
 
     <item
         android:id="@+id/menu"

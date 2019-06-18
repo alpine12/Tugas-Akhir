@@ -15,6 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <com.litetech.libs.nonswipeviewpager.ViewPager
+
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/bnve"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/pager"/>
 
         <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
             android:id="@+id/bnve"
@@ -22,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/pomegranate"
-            app:itemIconTint="@color/white"
+            app:itemIconTint="@color/customcolor"
             app:itemTextColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

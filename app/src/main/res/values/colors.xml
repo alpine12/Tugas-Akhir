@@ -7,6 +7,8 @@
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="pomegranate">#c0392b</color>
+    <color name="alizarin">#e74c3c</color>
+    <color name="customcolor">@drawable/custom_color</color>
 
 
 
