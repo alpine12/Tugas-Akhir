@@ -5,9 +5,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InitRetrofit {
 
+    public static final String BASE_URL = "http://192.168.6.199/restApi/dragon_api/";
+
     private static Retrofit Instance(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

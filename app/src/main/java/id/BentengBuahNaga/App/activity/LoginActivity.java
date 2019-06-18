@@ -3,7 +3,6 @@ package id.BentengBuahNaga.App.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +15,6 @@ import id.BentengBuahNaga.App.activity.contract.LoginContract;
 import id.BentengBuahNaga.App.activity.presenter.LoginPresenter;
 import id.BentengBuahNaga.App.aplication.App;
 import id.BentengBuahNaga.App.helper.PindahActivity;
-import id.BentengBuahNaga.App.services.FirebaseCloudMessaging;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private static final String TAG = "LoginActivity";
@@ -33,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         setContentView(R.layout.activity_login);
 
         mContext = this;
-        app = new App();
+
 
         initView();
         initButton();
@@ -68,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         });
     }
 
-    public void Toas(String message){
+    public void Toas(String message) {
         ProgressDialog dialog = new ProgressDialog(this);
         dialog.setMessage("wkwkw");
         dialog.show();

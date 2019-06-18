@@ -8,32 +8,38 @@
     tools:context=".activity.RegisterActivity">
 
     <EditText
+        android:id="@+id/et_namaPengguna"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nama Pengguna" />
 
     <EditText
+        android:id="@+id/et_namaLengkap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nama Lengkap" />
 
     <EditText
+        android:id="@+id/et_tanggalLahir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tanggal Lahir" />
 
     <EditText
+        android:id="@+id/et_noHp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="No Hp"
         android:inputType="phone" />
 
     <EditText
+        android:id="@+id/et_pekerjaan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Pekerjaan" />
 
     <EditText
+        android:id="@+id/et_alamat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Alamat Lengkap"
@@ -44,6 +50,7 @@
          />
 
     <Button
+        android:onClick="mendaftar"
         android:id="@+id/mendaftar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
