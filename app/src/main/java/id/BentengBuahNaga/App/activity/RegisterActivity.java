@@ -55,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     @Override
     public void berhasilmendaftar(String message) {
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override

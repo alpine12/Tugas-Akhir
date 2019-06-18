@@ -8,16 +8,18 @@ public interface LoginContract {
 
     interface View {
 
-        void loginBerhasil();
+        void loginBerhasil(String message);
 
-        void loginGagal();
+        void usernameSalah(String message);
 
-        void usernameSalah();
+        void loginGagal(String message);
 
         void MasukHalamanDaftar();
     }
 
     interface Presenter {
+
+        void cekUsernameAda();
 
         void cekLogin(String username);
 

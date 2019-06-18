@@ -17,11 +17,13 @@
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/login"
+        android:onClick="masuk"
         android:text="masuk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
+        android:onClick="mendaftar"
         android:id="@+id/daftar"
         android:text="Daftar Akun"
         android:layout_width="match_parent"

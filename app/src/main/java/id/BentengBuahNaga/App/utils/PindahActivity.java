@@ -1,4 +1,4 @@
-package id.BentengBuahNaga.App.helper;
+package id.BentengBuahNaga.App.utils;
 
 import android.content.Context;
 import android.content.Intent;

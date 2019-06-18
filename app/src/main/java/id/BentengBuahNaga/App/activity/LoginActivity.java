@@ -4,24 +4,24 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.contract.LoginContract;
 import id.BentengBuahNaga.App.activity.presenter.LoginPresenter;
 import id.BentengBuahNaga.App.aplication.App;
-import id.BentengBuahNaga.App.helper.PindahActivity;
+import id.BentengBuahNaga.App.helper.SharedPreff;
+import id.BentengBuahNaga.App.utils.PindahActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private static final String TAG = "LoginActivity";
     private Context mContext;
     private LoginPresenter presenter;
-    private Button masuk;
-    private Button daftar;
     private EditText username;
     private App app;
 
@@ -31,39 +31,30 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         setContentView(R.layout.activity_login);
 
         mContext = this;
-
-
         initView();
-        initButton();
-
+        initEvent();
     }
 
     private void initView() {
-        username = findViewById(R.id.username);
-        masuk = findViewById(R.id.login);
-        daftar = findViewById(R.id.daftar);
         presenter = new LoginPresenter(this);
+        username = findViewById(R.id.username);
 
     }
 
-    private void initButton() {
+    private void initEvent() {
 
-        masuk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        presenter.cekUsernameAda();
 
-                String user = username.getText().toString();
+    }
 
-                presenter.cekLogin(user);
-            }
-        });
+    public void masuk(View view) {
+        String user = username.getText().toString();
+        presenter.cekLogin(user);
 
-        daftar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.tombolDaftar();
-            }
-        });
+    }
+
+    public void mendaftar(View view) {
+        presenter.tombolDaftar();
     }
 
     public void Toas(String message) {
@@ -72,21 +63,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         dialog.show();
     }
 
-    @Override
-    public void loginBerhasil() {
-        Toast.makeText(this, "Login Succes", Toast.LENGTH_SHORT).show();
 
+    @Override
+    public void loginBerhasil(String message) {
+        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+        PindahActivity.pindahActivity(mContext, BerandaActivity.class);
     }
 
     @Override
-    public void loginGagal() {
-        Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
-
+    public void usernameSalah(String message) {
+        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void usernameSalah() {
-        Toast.makeText(this, "Username Salah", Toast.LENGTH_SHORT).show();
+    public void loginGagal(String message) {
+        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -105,4 +96,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         super.onPause();
         App.getInstance().setCurrentactivity(null);
     }
+
+
 }
