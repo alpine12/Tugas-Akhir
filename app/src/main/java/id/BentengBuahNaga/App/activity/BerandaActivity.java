@@ -12,14 +12,16 @@ import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.helper.SharedPreff;
 
 public class BerandaActivity extends AppCompatActivity {
+    private static final String TAG = "BerandaActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beranda);
 
-        TextView tv =findViewById(R.id.tvtv);
-        tv.setText(Prefs.getString(SharedPreff.getNamaLengkap(), null));
+
+
 
 
     }
