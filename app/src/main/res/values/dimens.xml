@@ -2,5 +2,6 @@
 <resources>
 
     <dimen name="padingDeafault">16dp</dimen>
+    <dimen name="textSizeToolbar">18sp</dimen>
 
 </resources>

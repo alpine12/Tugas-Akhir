@@ -2,6 +2,7 @@ package id.BentengBuahNaga.App.network;
 
 import java.util.Map;
 
+import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDaftarMenu;
 import id.BentengBuahNaga.App.activity.ResponseModel.ResponseLogin;
 import id.BentengBuahNaga.App.activity.ResponseModel.ResponseRegister;
 import okhttp3.ResponseBody;
@@ -35,5 +36,5 @@ public interface ApiIterface {
      * Load Daftar Menu
      */
     @GET("daftar_menu/{id}")
-    Call<ResponseBody> daftarMenu(@Path("id") String id);
+    Call<ResponseDaftarMenu> daftarMenu(@Path("id") String id);
 }
