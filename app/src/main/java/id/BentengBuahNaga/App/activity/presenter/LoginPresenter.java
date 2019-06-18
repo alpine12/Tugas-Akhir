@@ -31,8 +31,8 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void cekUsernameAda() {
-        if (!Prefs.getString(SharedPreff.getNamaPengguna(), null).isEmpty()){
-            view.loginBerhasil(Prefs.getString(SharedPreff.getNamaLengkap(), null));
+        if (Prefs.getString(SharedPreff.getNamaPengguna(), null)!=null){
+            view.loginBerhasil(Prefs.getString(SharedPreff.getNamaLengkap(), ""));
         }
 
     }

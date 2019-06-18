@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import id.BentengBuahNaga.App.R;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
                 finish();
 
             }
-        }, 1000);
+        }, 4000);
     }
 }

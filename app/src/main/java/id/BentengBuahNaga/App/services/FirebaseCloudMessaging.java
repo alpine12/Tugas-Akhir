@@ -57,7 +57,7 @@ public class FirebaseCloudMessaging extends FirebaseMessagingService {
                 ((LoginActivity) App.getInstance().getCurrentactivity()).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ((LoginActivity) App.getInstance().getCurrentactivity()).Toas("mesage");
+//                        ((LoginActivity) App.getInstance().getCurrentactivity()).Toas("mesage");
                     }
                 });
             }

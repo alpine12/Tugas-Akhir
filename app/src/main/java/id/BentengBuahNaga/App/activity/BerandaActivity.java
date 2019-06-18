@@ -20,12 +20,13 @@ import id.BentengBuahNaga.App.activity.fragment.AkunFragment;
 import id.BentengBuahNaga.App.activity.fragment.BerandaFragment;
 import id.BentengBuahNaga.App.activity.fragment.CartFragment;
 import id.BentengBuahNaga.App.activity.fragment.MenuFragment;
+import id.BentengBuahNaga.App.activity.presenter.BerandaPresenter;
 import id.BentengBuahNaga.App.activity.viewpager_adapter.SectionPageAdapter;
 import id.BentengBuahNaga.App.helper.SharedPreff;
 
 public class BerandaActivity extends AppCompatActivity implements BerandaContract.View {
     private static final String TAG = "BerandaActivity";
-
+    private BerandaPresenter presenter;
     private BottomNavigationViewEx bottomNav;
     private ViewPager viewPager;
     private SectionPageAdapter viewPageradapter;
@@ -41,18 +42,20 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
     }
 
     private void initUi() {
+        presenter = new BerandaPresenter(this);
         viewPager = findViewById(R.id.pager);
         bottomNav = findViewById(R.id.bnve);
         viewPageradapter = new SectionPageAdapter(getSupportFragmentManager());
     }
 
     private void initEvent() {
-        viewPager.setOffscreenPageLimit(4);
-        setViewPageradapter();
-        initBottomNav();
+       presenter.setViewPager();
+       presenter.setBottomnav();
     }
 
-    private void setViewPageradapter(){
+    @Override
+    public void initViewPager() {
+        viewPager.setOffscreenPageLimit(4);
         MenuFragment menu = new MenuFragment();
         BerandaFragment beranda = new BerandaFragment();
         CartFragment cart = new CartFragment();
@@ -64,14 +67,15 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
         viewPageradapter.addFragmen(akun);
         viewPager.setAdapter(viewPageradapter);
         bottomNav.setupWithViewPager(viewPager);
+
     }
 
-    private void initBottomNav(){
+    @Override
+    public void initBottomNav() {
         bottomNav.enableAnimation(false);
         bottomNav.enableShiftingMode(false);
         bottomNav.enableItemShiftingMode(false);
         bottomNav.setOnNavigationItemSelectedListener(listener);
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener listener =

@@ -10,4 +10,14 @@ public class BerandaPresenter implements BerandaContract.Presenter {
     public BerandaPresenter(BerandaContract.View view) {
         this.view = view;
     }
+
+    @Override
+    public void setViewPager() {
+        view.initViewPager();
+    }
+
+    @Override
+    public void setBottomnav() {
+        view.initBottomNav();
+    }
 }

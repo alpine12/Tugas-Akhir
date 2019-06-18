@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     private void initEvent() {
-
         presenter.cekUsernameAda();
 
     }
@@ -57,17 +56,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         presenter.tombolDaftar();
     }
 
-    public void Toas(String message) {
-        ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setMessage("wkwkw");
-        dialog.show();
-    }
-
-
     @Override
     public void loginBerhasil(String message) {
-        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
         PindahActivity.pindahActivity(mContext, BerandaActivity.class);
+        finish();
     }
 
     @Override
