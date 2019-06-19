@@ -12,6 +12,8 @@ public interface DaftarMenuContract {
         void stopShimmerLoading();
 
         void loadMenu(List<DaftarMenuModel> menu);
+
+        void showMessage(String message);
     }
 
     interface Presenter {

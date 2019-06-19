@@ -5,9 +5,7 @@ import java.util.Map;
 import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDaftarMenu;
 import id.BentengBuahNaga.App.activity.ResponseModel.ResponseLogin;
 import id.BentengBuahNaga.App.activity.ResponseModel.ResponseRegister;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -37,4 +35,10 @@ public interface ApiIterface {
      */
     @GET("daftar_menu/{id}")
     Call<ResponseDaftarMenu> daftarMenu(@Path("id") String id);
+
+    /*
+     * Detail Menu
+     */
+    @GET("detail_menu/{id}")
+    Call<ResponseDaftarMenu> deatailMenu(@Path("id") String id);
 }

@@ -5,6 +5,10 @@ public interface MenuFragmentContract {
     }
 
     interface View {
+        void initPelanggan();
+
+        void showQRcodeScanner();
+
         void daftarMakanan();
 
         void daftarMinuman();
@@ -13,9 +17,15 @@ public interface MenuFragmentContract {
 
         void daftarPesanan();
 
+        void PermOpenCamera();
+
     }
 
     interface Presenter {
+
+        void initPelanggan();
+
+        void tombolQrCode();
 
         void tombolMakanan();
 
@@ -24,6 +34,8 @@ public interface MenuFragmentContract {
         void tombolSnack();
 
         void tombolDaftarPesanan();
+
+        void PermCamera();
 
     }
 }

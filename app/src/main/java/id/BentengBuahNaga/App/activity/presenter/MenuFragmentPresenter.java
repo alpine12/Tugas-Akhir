@@ -10,6 +10,16 @@ public class MenuFragmentPresenter implements MenuFragmentContract.Presenter {
     }
 
     @Override
+    public void initPelanggan() {
+        view.initPelanggan();
+    }
+
+    @Override
+    public void tombolQrCode() {
+        view.showQRcodeScanner();
+    }
+
+    @Override
     public void tombolMakanan() {
         view.daftarMakanan();
     }
@@ -27,5 +37,10 @@ public class MenuFragmentPresenter implements MenuFragmentContract.Presenter {
     @Override
     public void tombolDaftarPesanan() {
         view.daftarPesanan();
+    }
+
+    @Override
+    public void PermCamera() {
+        view.PermOpenCamera();
     }
 }

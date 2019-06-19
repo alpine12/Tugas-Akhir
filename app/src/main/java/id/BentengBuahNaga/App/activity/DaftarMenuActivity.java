@@ -19,6 +19,7 @@ import id.BentengBuahNaga.App.activity.adapter.DaftarMenuAdapter;
 import id.BentengBuahNaga.App.activity.contract.DaftarMenuContract;
 import id.BentengBuahNaga.App.activity.model.DaftarMenuModel;
 import id.BentengBuahNaga.App.activity.presenter.DaftarMenuPresenter;
+import id.BentengBuahNaga.App.utils.PindahActivity;
 
 public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuContract.View {
     private static final String TAG = "DaftarMenuActivity";
@@ -67,10 +68,15 @@ public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuC
         adapter = new DaftarMenuAdapter(menu, mContext, new DaftarMenuAdapter.onClickListerner() {
             @Override
             public void onItemClick(DaftarMenuModel item) {
-                Toast.makeText(mContext, item.getNamaMenu(), Toast.LENGTH_SHORT).show();
+                PindahActivity.pindahActivityParam(mContext, DetailMenuTampilan.class, item.getIdMenu());
             }
         });
         rvMenu.setAdapter(adapter);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

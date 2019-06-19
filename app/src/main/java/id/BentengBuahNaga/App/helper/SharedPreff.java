@@ -16,6 +16,11 @@ public class SharedPreff {
 
     private static String alamat = "alamat";
 
+    private static String meja = "meja";
+
+    public static String getMeja() {
+        return meja;
+    }
 
     public static String getIdPelanggan() {
         return idPelanggan;

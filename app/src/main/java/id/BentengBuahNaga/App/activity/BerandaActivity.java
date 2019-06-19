@@ -100,4 +100,11 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
                     return true;
                 }
             };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MenuFragment menu = new MenuFragment();
+
+    }
 }
