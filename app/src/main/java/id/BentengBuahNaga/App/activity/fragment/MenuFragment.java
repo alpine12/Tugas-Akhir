@@ -1,6 +1,7 @@
 package id.BentengBuahNaga.App.activity.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
     private CardView cvMinuman;
     private CardView cvSnack;
     private CardView cvDaftarpesanan;
+    private Context mContext;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -43,6 +45,7 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
     }
 
     private void initUi(View view) {
+        mContext = getActivity();
         presenter = new MenuFragmentPresenter(this);
         cvMakanan = view.findViewById(R.id.cv_makanan);
         cvMinuman = view.findViewById(R.id.cv_minuman);
@@ -64,22 +67,22 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
 
     @Override
     public void daftarMakanan() {
-        PindahActivity.pindahActivity(getActivity(), DaftarMenuActivity.class);
+        PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "1");
     }
 
     @Override
     public void daftarMinuman() {
-        Toast.makeText(getActivity(), "Minuman", Toast.LENGTH_SHORT).show();
+        PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "2");
     }
 
     @Override
     public void daftarSnack() {
-        Toast.makeText(getActivity(), "Snack", Toast.LENGTH_SHORT).show();
+        PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "3");
     }
 
     @Override
     public void daftarPesanan() {
-        Toast.makeText(getActivity(), "Pesanan", Toast.LENGTH_SHORT).show();
+        PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "4");
     }
 
     @Override
