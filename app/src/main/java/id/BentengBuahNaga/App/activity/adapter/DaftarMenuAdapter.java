@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,7 +23,6 @@ public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.vi
     private List<DaftarMenuModel> item;
     private Context context;
     private onClickListerner listerner;
-
 
 
     public DaftarMenuAdapter(List<DaftarMenuModel> item, Context context, onClickListerner clickListerner) {
@@ -73,7 +73,8 @@ public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.vi
                 }
             });
 
-            Picasso.get().load(InitRetrofit.getIMAGEURL() + menu.getGambar()).into(iconMenu);
+            Picasso.get().load(InitRetrofit.getIMAGEURL() + menu.getGambar())
+                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(iconMenu);
             tittleMenu.setText(menu.getNamaMenu());
             hargaMenu.setText(menu.getHarga());
         }

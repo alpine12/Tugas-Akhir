@@ -1,14 +1,15 @@
 package id.BentengBuahNaga.App.activity;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 
@@ -25,10 +26,11 @@ public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuC
     private static final String TAG = "DaftarMenuActivity";
     private RecyclerView rvMenu;
     private DaftarMenuPresenter presenter;
-    private GridLayoutManager layoutManager;
+    private RecyclerView.LayoutManager layoutManager;
     private DaftarMenuAdapter adapter;
     private Context mContext;
     private ShimmerFrameLayout mShimmerViewContainer;
+    private ImageView back;
 
 
     @Override
@@ -43,18 +45,27 @@ public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuC
     public void initUi() {
         mContext = this;
         presenter = new DaftarMenuPresenter(this);
+        back = findViewById(R.id.backArrow);
         rvMenu = findViewById(R.id.rv_daftarMenu);
-        layoutManager = new GridLayoutManager(this,2);
+        layoutManager = new GridLayoutManager(mContext, 2, RecyclerView.VERTICAL, false);
         mShimmerViewContainer = findViewById(R.id.loadingContainer);
     }
 
     private void initEvent() {
         rvMenu.setLayoutManager(layoutManager);
         rvMenu.setHasFixedSize(true);
+        rvMenu.setNestedScrollingEnabled(false);
         rvMenu.setItemAnimator(new DefaultItemAnimator());
 
         String id = getIntent().getStringExtra("param");
         presenter.getMenu(id);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override

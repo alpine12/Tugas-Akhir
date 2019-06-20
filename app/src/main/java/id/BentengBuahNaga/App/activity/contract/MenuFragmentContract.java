@@ -19,6 +19,8 @@ public interface MenuFragmentContract {
 
         void PermOpenCamera();
 
+        void pesanKodeMejaKososng();
+
     }
 
     interface Presenter {
@@ -36,6 +38,8 @@ public interface MenuFragmentContract {
         void tombolDaftarPesanan();
 
         void PermCamera();
+
+        void cekmejaKososng();
 
     }
 }

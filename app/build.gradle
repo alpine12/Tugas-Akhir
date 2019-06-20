@@ -39,7 +39,9 @@ dependencies {
     //Network
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.14.2'
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
 
     //ImageLibrary
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -70,11 +72,6 @@ dependencies {
 
     //EasyPerm
     implementation 'pub.devrel:easypermissions:3.0.0'
-
-    //eventBus
-    implementation 'org.greenrobot:eventbus:3.1.1'
-
-
 }
 
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin

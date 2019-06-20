@@ -13,11 +13,17 @@
 
 
         <TextView
-            android:textAlignment="center"
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="akun" />
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="akun"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
     </LinearLayout>
 

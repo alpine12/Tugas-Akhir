@@ -43,4 +43,9 @@ public class MenuFragmentPresenter implements MenuFragmentContract.Presenter {
     public void PermCamera() {
         view.PermOpenCamera();
     }
+
+    @Override
+    public void cekmejaKososng() {
+        view.pesanKodeMejaKososng();
+    }
 }

@@ -64,6 +64,7 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Scan Result");
+        dialog.setCancelable(false);
         dialog.setMessage(rawResult.getText());
         dialog.setNegativeButton("ok", new DialogInterface.OnClickListener() {
             @Override

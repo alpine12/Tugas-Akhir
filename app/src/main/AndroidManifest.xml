@@ -17,7 +17,8 @@
         <activity android:name=".helper.Scanner"
             android:label="Scanner"
             android:parentActivityName=".activity.DaftarMenuActivity"/>
-        <activity android:name=".activity.DetailMenuTampilan"/>
+        <activity android:name=".activity.DetailMenuTampilan"
+            android:parentActivityName=".activity.DaftarMenuActivity"/>
         <activity android:name=".activity.DaftarMenuActivity" />
         <activity android:name=".activity.BerandaActivity" />
         <activity android:name=".activity.RegisterActivity" />

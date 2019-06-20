@@ -31,7 +31,6 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
     private ViewPager viewPager;
     private SectionPageAdapter viewPageradapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,11 +99,4 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
                     return true;
                 }
             };
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MenuFragment menu = new MenuFragment();
-
-    }
 }

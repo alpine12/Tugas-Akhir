@@ -5,11 +5,13 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -20,6 +22,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.util.List;
 
 import id.BentengBuahNaga.App.R;
+import id.BentengBuahNaga.App.activity.BerandaActivity;
 import id.BentengBuahNaga.App.activity.DaftarMenuActivity;
 import id.BentengBuahNaga.App.activity.contract.MenuFragmentContract;
 import id.BentengBuahNaga.App.activity.presenter.MenuFragmentPresenter;
@@ -33,7 +36,9 @@ import pub.devrel.easypermissions.EasyPermissions;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MenuFragment extends Fragment implements MenuFragmentContract.View, View.OnClickListener, EasyPermissions.PermissionCallbacks {
+public class MenuFragment extends Fragment implements MenuFragmentContract.View,
+        View.OnClickListener, EasyPermissions.PermissionCallbacks {
+    private static final String TAG = "MenuFragment";
     private MenuFragmentPresenter presenter;
     private CardView cvMakanan;
     private CardView cvMinuman;
@@ -44,10 +49,10 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
     private TextView noMeja;
     private ImageView qrCOde;
 
+
     public MenuFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,7 +80,7 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
 
     private void initEvent() {
         initButton();
-        presenter.initPelanggan();
+//        presenter.initPelanggan();
     }
 
     private void initButton() {
@@ -85,6 +90,8 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
         cvDaftarpesanan.setOnClickListener(this);
         qrCOde.setOnClickListener(this);
     }
+
+
 
     @Override
     public void initPelanggan() {
@@ -104,22 +111,40 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
 
     @Override
     public void daftarMakanan() {
-        PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "1");
+
+        if (Prefs.getString(SharedPreff.getMeja(), null) == null) {
+            presenter.cekmejaKososng();
+        } else {
+            PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "1");
+        }
+
     }
 
     @Override
     public void daftarMinuman() {
-        PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "2");
+        if (Prefs.getString(SharedPreff.getMeja(), null) == null) {
+            presenter.cekmejaKososng();
+        } else {
+            PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "2");
+        }
     }
 
     @Override
     public void daftarSnack() {
-        PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "3");
+        if (Prefs.getString(SharedPreff.getMeja(), null) == null) {
+            presenter.cekmejaKososng();
+        } else {
+            PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "3");
+        }
     }
 
     @Override
     public void daftarPesanan() {
-        PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "4");
+        if (Prefs.getString(SharedPreff.getMeja(), null) == null) {
+            presenter.cekmejaKososng();
+        } else {
+            PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "4");
+        }
     }
 
     @Override
@@ -135,8 +160,14 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
     }
 
     @Override
+    public void pesanKodeMejaKososng() {
+        Toast.makeText(mContext, "Mohon Scan Meja Dahulu", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
+
             case R.id.cv_makanan:
                 presenter.tombolMakanan();
                 break;
@@ -186,12 +217,9 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
+        presenter.initPelanggan();
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
 }
