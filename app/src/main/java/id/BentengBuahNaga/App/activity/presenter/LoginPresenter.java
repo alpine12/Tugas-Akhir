@@ -12,7 +12,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import id.BentengBuahNaga.App.activity.ResponseModel.ResponseLogin;
+import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDeffault;
 import id.BentengBuahNaga.App.activity.contract.LoginContract;
 import id.BentengBuahNaga.App.activity.model.LoginModel;
 import id.BentengBuahNaga.App.helper.SharedPreff;
@@ -31,7 +31,11 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void cekUsernameAda() {
-        if (Prefs.getString(SharedPreff.getNamaPengguna(), null)!=null){
+//        if (Prefs.getString(SharedPreff.getNamaPengguna(), null)!=null){
+//            view.loginBerhasil(Prefs.getString(SharedPreff.getNamaLengkap(), ""));
+//        }
+
+        if (Prefs.getBoolean(SharedPreff.getIsLogin(), false)==true){
             view.loginBerhasil(Prefs.getString(SharedPreff.getNamaLengkap(), ""));
         }
 
@@ -60,11 +64,11 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     private void checkLoggin(String username, String token){
-        Call<ResponseLogin> login = InitRetrofit.getInstance().login(username,token);
-        login.enqueue(new Callback<ResponseLogin>() {
+        Call<ResponseDeffault> login = InitRetrofit.getInstance().login(username,token);
+        login.enqueue(new Callback<ResponseDeffault>() {
             @Override
-            public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
-                ResponseLogin res = response.body();
+            public void onResponse(Call<ResponseDeffault> call, Response<ResponseDeffault> response) {
+                ResponseDeffault res = response.body();
                 if (response.isSuccessful()){
                     if (res.isStatus()){
                         LoginModel model = res.getPengguna();
@@ -77,14 +81,14 @@ public class LoginPresenter implements LoginContract.Presenter {
             }
 
             @Override
-            public void onFailure(Call<ResponseLogin> call, Throwable t) {
+            public void onFailure(Call<ResponseDeffault> call, Throwable t) {
                 view.loginGagal(t.getMessage());
             }
         });
     }
 
     private void simpanSharedPreff(LoginModel model){
-
+        Prefs.putBoolean(SharedPreff.getIsLogin(), true);
         Prefs.putString(SharedPreff.getIdPelanggan(), model.getIdPelanggan());
         Prefs.putString(SharedPreff.getNamaPengguna(), model.getNamaPengguna());
         Prefs.putString(SharedPreff.getNamaLengkap(), model.getNamaLengkap());

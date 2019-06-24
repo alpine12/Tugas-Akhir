@@ -1,25 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.fragment.BerandaFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="beranda"
-            android:textAlignment="center" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:fillColor="@color/pomegranate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:pageColor="@color/white"
+                app:radius="6dp"
+                app:slideInterval="4000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp">
+
+            </com.synnapps.carouselview.CarouselView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/alizarin"
+                android:padding="@dimen/_10sdp" />
+
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/makanan"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:fillColor="@color/pomegranate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:pageColor="@color/white"
+                app:radius="6dp"
+                app:slideInterval="4000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp">
+
+            </com.synnapps.carouselview.CarouselView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/alizarin"
+                android:padding="@dimen/_10sdp" />
+
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/minuman"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:fillColor="@color/pomegranate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:pageColor="@color/white"
+                app:radius="6dp"
+                app:slideInterval="4000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp">
+
+            </com.synnapps.carouselview.CarouselView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/alizarin"
+                android:padding="@dimen/_10sdp" />
+
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/snack"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:fillColor="@color/pomegranate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:pageColor="@color/white"
+                app:radius="6dp"
+                app:slideInterval="4000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp">
+
+            </com.synnapps.carouselview.CarouselView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </FrameLayout>

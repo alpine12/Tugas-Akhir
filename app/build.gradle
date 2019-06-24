@@ -72,6 +72,9 @@ dependencies {
 
     //EasyPerm
     implementation 'pub.devrel:easypermissions:3.0.0'
+
+    //Carousel
+    implementation 'com.synnapps:carouselview:0.1.5'
 }
 
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin

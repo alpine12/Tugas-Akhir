@@ -5,8 +5,12 @@ public interface BerandaFragmenContract {
     }
 
     interface View {
+
+        void loadBanner(int[] data1, int[] data2, int[] data3, int[] data4);
     }
 
     interface Presenter {
+
+        void initbanner();
     }
 }

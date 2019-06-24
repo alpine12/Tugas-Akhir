@@ -2,27 +2,22 @@ package id.BentengBuahNaga.App.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.pixplicity.easyprefs.library.Prefs;
 
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.contract.BerandaContract;
 import id.BentengBuahNaga.App.activity.fragment.AkunFragment;
 import id.BentengBuahNaga.App.activity.fragment.BerandaFragment;
-import id.BentengBuahNaga.App.activity.fragment.CartFragment;
+import id.BentengBuahNaga.App.activity.fragment.KeranjangFragment;
 import id.BentengBuahNaga.App.activity.fragment.MenuFragment;
 import id.BentengBuahNaga.App.activity.presenter.BerandaPresenter;
 import id.BentengBuahNaga.App.activity.viewpager_adapter.SectionPageAdapter;
-import id.BentengBuahNaga.App.helper.SharedPreff;
 
 public class BerandaActivity extends AppCompatActivity implements BerandaContract.View {
     private static final String TAG = "BerandaActivity";
@@ -57,7 +52,7 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
         viewPager.setOffscreenPageLimit(4);
         MenuFragment menu = new MenuFragment();
         BerandaFragment beranda = new BerandaFragment();
-        CartFragment cart = new CartFragment();
+        KeranjangFragment cart = new KeranjangFragment();
         AkunFragment akun = new AkunFragment();
 
         viewPageradapter.addFragmen(beranda);

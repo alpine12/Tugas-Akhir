@@ -2,7 +2,7 @@ package id.BentengBuahNaga.App.activity.presenter;
 
 import java.util.List;
 
-import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDaftarMenu;
+import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDeffault;
 import id.BentengBuahNaga.App.activity.contract.DaftarMenuContract;
 import id.BentengBuahNaga.App.activity.model.DaftarMenuModel;
 import id.BentengBuahNaga.App.network.InitRetrofit;
@@ -19,11 +19,11 @@ public class DaftarMenuPresenter implements DaftarMenuContract.Presenter {
 
     @Override
     public void getMenu(String id) {
-        Call<ResponseDaftarMenu> menu = InitRetrofit.getInstance().daftarMenu(id);
-        menu.enqueue(new Callback<ResponseDaftarMenu>() {
+        Call<ResponseDeffault> menu = InitRetrofit.getInstance().daftarMenu(id);
+        menu.enqueue(new Callback<ResponseDeffault>() {
             @Override
-            public void onResponse(Call<ResponseDaftarMenu> call, Response<ResponseDaftarMenu> response) {
-                ResponseDaftarMenu res = response.body();
+            public void onResponse(Call<ResponseDeffault> call, Response<ResponseDeffault> response) {
+                ResponseDeffault res = response.body();
                 if (response.isSuccessful()){
                     if (res.isStatus()){
                         List<DaftarMenuModel> list = res.getDaftarmenu();
@@ -37,7 +37,7 @@ public class DaftarMenuPresenter implements DaftarMenuContract.Presenter {
             }
 
             @Override
-            public void onFailure(Call<ResponseDaftarMenu> call, Throwable t) {
+            public void onFailure(Call<ResponseDeffault> call, Throwable t) {
                 view.showMessage(t.getMessage());
             }
         });

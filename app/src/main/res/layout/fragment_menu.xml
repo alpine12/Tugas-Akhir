@@ -26,7 +26,6 @@
 
 
                 <TextView
-                    android:textColor="@color/white"
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -34,6 +33,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:text="Selamat Datang"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +55,6 @@
                     app:layout_constraintVertical_bias="0.056" />
 
                 <TextView
-                    android:textColor="@color/white"
                     android:id="@+id/tv_nmPelanggan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,28 +62,29 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:text="TextView"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                 <TextView
-                    android:textColor="@color/white"
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="NO MEJA"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nmPelanggan" />
 
                 <TextView
-                    android:textColor="@color/white"
                     android:id="@+id/tv_idMeja"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="TextView"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -93,13 +93,13 @@
         </FrameLayout>
 
         <GridLayout
-            android:padding="@dimen/padingDeafault"
-            android:layout_weight="50"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="50"
             android:columnCount="2"
             android:orientation="horizontal"
+            android:padding="@dimen/padingDeafault"
             android:rowCount="4">
 
 
@@ -112,6 +112,13 @@
                 android:layout_margin="10dp"
                 android:background="@color/white">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_16sdp"
+                    android:src="@drawable/icon_makanan"
+                    android:tint="@color/pomegranate" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -122,6 +129,13 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="10dp"
                 android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_16sdp"
+                    android:src="@drawable/icon_minuman"
+                    android:tint="@color/pomegranate" />
 
             </androidx.cardview.widget.CardView>
 
@@ -134,6 +148,13 @@
                 android:layout_margin="10dp"
                 android:background="@color/white">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_16sdp"
+                    android:src="@drawable/icon_snack"
+                    android:tint="@color/pomegranate" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -145,8 +166,14 @@
                 android:layout_margin="10dp"
                 android:background="@color/white">
 
-            </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_16sdp"
+                    android:src="@drawable/icon_daftar_pesanan"
+                    android:tint="@color/pomegranate" />
 
+            </androidx.cardview.widget.CardView>
 
 
         </GridLayout>

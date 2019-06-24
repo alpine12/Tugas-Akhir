@@ -21,6 +21,7 @@ import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.contract.DetailMenuTampilanContract;
 import id.BentengBuahNaga.App.activity.model.DaftarMenuModel;
 import id.BentengBuahNaga.App.activity.presenter.DetailMenuTampilanPresenter;
+import id.BentengBuahNaga.App.helper.FormatRp;
 import id.BentengBuahNaga.App.helper.SharedPreff;
 import id.BentengBuahNaga.App.network.InitRetrofit;
 
@@ -106,7 +107,7 @@ public class DetailMenuTampilan extends AppCompatActivity implements DetailMenuT
         Picasso.get().load(InitRetrofit.getIMAGEURL() + menu.getGambar()).fit()
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(imgHolder);
         tvTitle.setText(menu.getNamaMenu());
-        tvHarga.setText(menu.getHarga());
+        tvHarga.setText(FormatRp.FormatRp(menu.getHarga()));
         tvDescripsi.setText(menu.getDeskripsi());
     }
 

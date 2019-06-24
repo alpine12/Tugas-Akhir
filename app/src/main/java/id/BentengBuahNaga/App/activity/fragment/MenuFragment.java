@@ -100,7 +100,6 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
             noMeja.setText("Mohon Scan Meja");
         } else {
             noMeja.setText(Prefs.getString(SharedPreff.getMeja(), null));
-            qrCOde.setVisibility(View.GONE);
         }
     }
 

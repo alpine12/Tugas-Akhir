@@ -17,6 +17,7 @@ import java.util.List;
 
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.model.DaftarMenuModel;
+import id.BentengBuahNaga.App.helper.FormatRp;
 import id.BentengBuahNaga.App.network.InitRetrofit;
 
 public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.viewHolder> {
@@ -61,11 +62,9 @@ public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.vi
             iconMenu = v.findViewById(R.id.iconMenu);
             tittleMenu = v.findViewById(R.id.titleMmenu);
             hargaMenu = v.findViewById(R.id.hargaMenu);
-
         }
 
         private void bindItem(DaftarMenuModel menu, onClickListerner listerner) {
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -76,7 +75,7 @@ public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.vi
             Picasso.get().load(InitRetrofit.getIMAGEURL() + menu.getGambar())
                     .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(iconMenu);
             tittleMenu.setText(menu.getNamaMenu());
-            hargaMenu.setText(menu.getHarga());
+            hargaMenu.setText(FormatRp.FormatRp(menu.getHarga()));
         }
     }
 

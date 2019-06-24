@@ -18,6 +18,12 @@ public class SharedPreff {
 
     private static String meja = "meja";
 
+    private static String isLogin = "login";
+
+    public static String getIsLogin() {
+        return isLogin;
+    }
+
     public static String getMeja() {
         return meja;
     }

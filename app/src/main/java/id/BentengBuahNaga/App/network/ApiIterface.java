@@ -4,16 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDeffault;
-import id.BentengBuahNaga.App.activity.ResponseModel.Responses;
-import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDaftarMenu;
-import id.BentengBuahNaga.App.activity.ResponseModel.ResponseLogin;
-import id.BentengBuahNaga.App.activity.ResponseModel.ResponseRegister;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -24,27 +20,27 @@ public interface ApiIterface {
      */
     @FormUrlEncoded
     @POST("login")
-    Call<ResponseLogin> login(@Field("username") String username,
-                              @Field("token") String token);
+    Call<ResponseDeffault> login(@Field("username") String username,
+                                 @Field("token") String token);
 
     /*
      *Regristasi
      */
     @FormUrlEncoded
     @POST("register")
-    Call<ResponseRegister> Register(@FieldMap Map<String, String> data);
+    Call<ResponseDeffault> Register(@FieldMap Map<String, String> data);
 
     /*
      * Load Daftar Menu
      */
     @GET("daftar_menu/{id}")
-    Call<ResponseDaftarMenu> daftarMenu(@Path("id") String id);
+    Call<ResponseDeffault> daftarMenu(@Path("id") String id);
 
     /*
      * Detail Menu
      */
     @GET("detail_menu/{id}")
-    Call<ResponseDaftarMenu> deatailMenu(@Path("id") String id);
+    Call<ResponseDeffault> deatailMenu(@Path("id") String id);
 
     /*
      *insert keranjang
@@ -53,8 +49,26 @@ public interface ApiIterface {
     @FormUrlEncoded
     @POST("keranjang")
     Call<ResponseDeffault> tambahKeranjang(@FieldMap HashMap<String, String> data);
-//    Call<ResponseDeffault> tambahKeranjang(@Field("a") String a,
-//                                           @Field("b") String b,
-//                                           @Field("c") String c,
-//                                           @Field("d") String d);
+
+    @GET("keranjang/{id}")
+    Call<ResponseDeffault> getKeranjang(@Path("id") String IdPelanggan);
+
+    /*
+     *CheckOut Keranjang
+     */
+    @FormUrlEncoded
+    @POST("transaksi")
+    Call<ResponseDeffault> checkout(@FieldMap HashMap<String, String> data);
+
+    /*
+     *Delete Keranjang
+     */
+    @DELETE("keranjang/{id}")
+    Call<ResponseDeffault> deleteListKeranjang(@Path("id") String id);
+
+    /*
+     *Get Transaksi
+     */
+    @GET("transaksi/{id}")
+    Call<ResponseDeffault> getDaftarPesanan(@Path("id") String id);
 }

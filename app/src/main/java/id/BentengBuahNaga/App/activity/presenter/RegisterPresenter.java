@@ -4,9 +4,8 @@ import android.util.Log;
 
 import java.util.HashMap;
 
+import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDeffault;
 import id.BentengBuahNaga.App.activity.contract.RegisterContract;
-import id.BentengBuahNaga.App.activity.ResponseModel.ResponseRegister;
-import id.BentengBuahNaga.App.activity.model.RegisterModel;
 import id.BentengBuahNaga.App.network.InitRetrofit;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,13 +27,13 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     }
 
     private void mendaftar(HashMap<String,String> data){
-        Call<ResponseRegister> Register = InitRetrofit.getInstance().Register(data);
-        Register.enqueue(new Callback<ResponseRegister>() {
+        Call<ResponseDeffault> Register = InitRetrofit.getInstance().Register(data);
+        Register.enqueue(new Callback<ResponseDeffault>() {
             @Override
-            public void onResponse(Call<ResponseRegister> call, Response<ResponseRegister> response) {
+            public void onResponse(Call<ResponseDeffault> call, Response<ResponseDeffault> response) {
 
                 if (response.isSuccessful()){
-                    ResponseRegister res = response.body();
+                    ResponseDeffault res = response.body();
                     boolean isTrue;
                     if (res.isStatus()){
                         view.berhasilmendaftar(res.getMessage());
@@ -45,7 +44,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             }
 
             @Override
-            public void onFailure(Call<ResponseRegister> call, Throwable t) {
+            public void onFailure(Call<ResponseDeffault> call, Throwable t) {
                 view.jaringanGagal();
             }
         });
