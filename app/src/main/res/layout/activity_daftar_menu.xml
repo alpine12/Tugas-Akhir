@@ -49,10 +49,9 @@
         app:layout_constraintTop_toBottomOf="@+id/include"
         app:layout_constraintVertical_bias="0.47000003"
         tools:itemCount="6"
-        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/list_layout_daftarmenu"
+        tools:listitem="@layout/list_item_layout_daftarpesanan"
         tools:orientation="vertical"
-        tools:spanCount="2" />
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

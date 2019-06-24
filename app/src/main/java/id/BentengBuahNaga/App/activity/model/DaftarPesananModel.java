@@ -2,7 +2,11 @@ package id.BentengBuahNaga.App.activity.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DaftarPesananModel {
+import id.BentengBuahNaga.App.activity.contract.DaftarPesananContract;
+
+public class DaftarPesananModel implements DaftarPesananContract.Model {
+
+
     @SerializedName("kode_promo")
     private String kodePromo;
 
@@ -16,7 +20,7 @@ public class DaftarPesananModel {
     private String waktuTransaksi;
 
     @SerializedName("status_bayar")
-    private Object statusBayar;
+    private String statusBayar;
 
     @SerializedName("catatan")
     private String catatan;
@@ -36,47 +40,47 @@ public class DaftarPesananModel {
     @SerializedName("id_pengguna")
     private String idPengguna;
 
-    public String getKodePromo(){
+    public String getKodePromo() {
         return kodePromo;
     }
 
-    public String getKodeTransaksi(){
+    public String getKodeTransaksi() {
         return kodeTransaksi;
     }
 
-    public String getIdPesanan(){
+    public String getIdPesanan() {
         return idPesanan;
     }
 
-    public String getWaktuTransaksi(){
+    public String getWaktuTransaksi() {
         return waktuTransaksi;
     }
 
-    public Object getStatusBayar(){
+    public String getStatusBayar() {
         return statusBayar;
     }
 
-    public String getCatatan(){
+    public String getCatatan() {
         return catatan;
     }
 
-    public String getKodeMeja(){
+    public String getKodeMeja() {
         return kodeMeja;
     }
 
-    public String getTotalPembayaran(){
+    public String getTotalPembayaran() {
         return totalPembayaran;
     }
 
-    public String getIdPelanggan(){
+    public String getIdPelanggan() {
         return idPelanggan;
     }
 
-    public String getProses(){
+    public String getProses() {
         return proses;
     }
 
-    public String getIdPengguna(){
+    public String getIdPengguna() {
         return idPengguna;
     }
 }

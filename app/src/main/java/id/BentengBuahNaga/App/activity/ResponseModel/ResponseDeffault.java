@@ -33,7 +33,6 @@ public class ResponseDeffault {
     @SerializedName("daftar_pesaan")
     private List<DaftarPesananModel> daftarPesaan;
 
-
     public List<DaftarPesananModel> getDaftarPesaan() {
         return daftarPesaan;
     }

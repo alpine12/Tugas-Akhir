@@ -67,8 +67,14 @@ public interface ApiIterface {
     Call<ResponseDeffault> deleteListKeranjang(@Path("id") String id);
 
     /*
-     *Get Transaksi
+     *Get Daftar Pesanan
      */
     @GET("transaksi/{id}")
     Call<ResponseDeffault> getDaftarPesanan(@Path("id") String id);
+
+    /*
+     *Detail Pesanan
+     */
+    @GET("detail_transaksi/{id}")
+    Call<ResponseDeffault> detailPesanan9(@Path("id") String idPesanan);
 }

@@ -24,6 +24,7 @@ import java.util.List;
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.BerandaActivity;
 import id.BentengBuahNaga.App.activity.DaftarMenuActivity;
+import id.BentengBuahNaga.App.activity.DaftarPesananActivity;
 import id.BentengBuahNaga.App.activity.contract.MenuFragmentContract;
 import id.BentengBuahNaga.App.activity.presenter.MenuFragmentPresenter;
 import id.BentengBuahNaga.App.helper.Scanner;
@@ -142,7 +143,7 @@ public class MenuFragment extends Fragment implements MenuFragmentContract.View,
         if (Prefs.getString(SharedPreff.getMeja(), null) == null) {
             presenter.cekmejaKososng();
         } else {
-            PindahActivity.pindahActivityParam(mContext, DaftarMenuActivity.class, "4");
+            PindahActivity.pindahActivityParam(mContext, DaftarPesananActivity.class, "4");
         }
     }
 
