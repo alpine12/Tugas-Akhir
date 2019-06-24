@@ -56,7 +56,7 @@ public class DaftarPesananActivity extends AppCompatActivity implements DaftarPe
             @Override
             public void onClick(int Position, DaftarPesananModel model) {
                 Toast.makeText(mContext,Position+" "+ model.getKodeTransaksi(), Toast.LENGTH_SHORT).show();
-                PindahActivity.pindahActivity(mContext,DetailDaftarPesananActivity.class);
+                PindahActivity.pindahActivityParam(mContext,DetailDaftarPesananActivity.class,model.getIdPesanan());
             }
         });
 

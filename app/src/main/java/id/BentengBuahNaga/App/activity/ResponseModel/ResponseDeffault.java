@@ -6,6 +6,7 @@ import java.util.List;
 
 import id.BentengBuahNaga.App.activity.model.DaftarMenuModel;
 import id.BentengBuahNaga.App.activity.model.DaftarPesananModel;
+import id.BentengBuahNaga.App.activity.model.DetailDaftarPesananModel;
 import id.BentengBuahNaga.App.activity.model.KeranjangFragmentModel;
 import id.BentengBuahNaga.App.activity.model.LoginModel;
 
@@ -32,6 +33,13 @@ public class ResponseDeffault {
 
     @SerializedName("daftar_pesaan")
     private List<DaftarPesananModel> daftarPesaan;
+
+    @SerializedName("daftar detail pesaan")
+    private List<DetailDaftarPesananModel> daftarDetailPesaan;
+
+    public List<DetailDaftarPesananModel> getDaftarDetailPesaan() {
+        return daftarDetailPesaan;
+    }
 
     public List<DaftarPesananModel> getDaftarPesaan() {
         return daftarPesaan;

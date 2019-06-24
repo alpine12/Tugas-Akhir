@@ -63,7 +63,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.view
             imgIcon = v.findViewById(R.id.img_iconMenu);
             titleMenu = v.findViewById(R.id.tv_titleMenu);
             jumlah = v.findViewById(R.id.tv_jumlahPesan);
-            harga = v.findViewById(R.id.tv_harga);
+            harga = v.findViewById(R.id.tv_status);
         }
 
         public void bindItem(KeranjangFragmentModel model) {
