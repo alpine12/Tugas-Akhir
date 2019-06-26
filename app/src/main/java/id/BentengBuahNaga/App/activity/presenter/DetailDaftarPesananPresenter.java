@@ -27,7 +27,7 @@ public class DetailDaftarPesananPresenter implements DetailDaftarPesananContract
 
     @Override
     public void daftarPesanan(String idPesanan) {
-        Call<ResponseDeffault> daftarPesanan = InitRetrofit.getInstance().getDaftarPesanan(idPesanan);
+        Call<ResponseDeffault> daftarPesanan = InitRetrofit.getInstance().detailPesanan9(idPesanan);
         daftarPesanan.enqueue(new Callback<ResponseDeffault>() {
             @Override
             public void onResponse(Call<ResponseDeffault> call, Response<ResponseDeffault> response) {

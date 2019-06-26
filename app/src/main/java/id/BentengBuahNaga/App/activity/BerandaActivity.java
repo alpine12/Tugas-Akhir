@@ -26,6 +26,7 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
     private ViewPager viewPager;
     private SectionPageAdapter viewPageradapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

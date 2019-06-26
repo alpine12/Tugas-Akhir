@@ -2,32 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="@dimen/padingDeafault"
+    android:weightSum="100"
     tools:context=".activity.LoginActivity">
 
-    <EditText
-        android:id="@+id/username"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/login"
-        android:onClick="masuk"
-        android:text="masuk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="70">
 
-    <Button
-        android:onClick="mendaftar"
-        android:id="@+id/daftar"
-        android:text="Daftar Akun"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_daftar_pesanan" />
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="30">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/alizarin"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:alpha="0.9
+">
+
+            <EditText
+
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:onClick="masuk"
+                android:text="masuk" />
+
+            <Button
+
+                android:id="@+id/daftar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:onClick="mendaftar"
+                android:text="Daftar Akun" />
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 
 </LinearLayout>

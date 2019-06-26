@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class DetailDaftarPesananActivity extends AppCompatActivity implements De
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_daftar_pesanan);
 
+        presenter = new DetailDaftarPesananPresenter(this);
         presenter.initMain();
 
     }
@@ -54,6 +56,7 @@ public class DetailDaftarPesananActivity extends AppCompatActivity implements De
     public void loadData(List<DetailDaftarPesananModel> item) {
         adapter = new DaftarDetailPesananAdapter(context, item);
         rvDetailPesanan.setAdapter(adapter);
+        Log.d(TAG, "loadData: "+item.toString());
     }
 
     @Override

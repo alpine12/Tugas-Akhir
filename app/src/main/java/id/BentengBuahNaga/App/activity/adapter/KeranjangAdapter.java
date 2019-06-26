@@ -51,7 +51,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.view
         return item.size();
     }
 
-    public static class viewHolder extends RecyclerView.ViewHolder {
+    public  class viewHolder extends RecyclerView.ViewHolder {
         private ImageView imgIcon;
         private TextView titleMenu;
         private TextView jumlah;

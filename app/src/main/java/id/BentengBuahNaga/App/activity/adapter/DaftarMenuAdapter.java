@@ -51,7 +51,7 @@ public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.vi
         return item.size();
     }
 
-    public static class viewHolder extends RecyclerView.ViewHolder {
+    public  class viewHolder extends RecyclerView.ViewHolder {
         private ImageView iconMenu;
         private TextView tittleMenu;
         private TextView hargaMenu;

@@ -10,7 +10,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class InitRetrofit {
 
     private static final String URL = "http://192.168.4.102/";
-    private static final String BASE_URL =URL+ "simcafe/api/";
+    private static final String BASE_URL =URL+ "simcafe/api_client/";
     private static final String IMAGEURL = URL+"simcafe/assets/img/foto_menu/";
 
     private static Retrofit Instance() {

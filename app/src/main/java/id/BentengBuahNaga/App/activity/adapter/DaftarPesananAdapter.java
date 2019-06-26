@@ -51,7 +51,7 @@ public class DaftarPesananAdapter extends RecyclerView.Adapter<DaftarPesananAdap
         return item.size();
     }
 
-    public static class viewHolder extends RecyclerView.ViewHolder {
+    public  class viewHolder extends RecyclerView.ViewHolder {
         private TextView kodeTrans;
         private TextView total;
         private TextView tggljam;

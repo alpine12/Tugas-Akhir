@@ -47,7 +47,7 @@ public class DaftarDetailPesananAdapter extends RecyclerView.Adapter<DaftarDetai
         return item.size();
     }
 
-    public static class viewHolder extends RecyclerView.ViewHolder {
+    public class viewHolder extends RecyclerView.ViewHolder {
         private ImageView imgTitle;
         private TextView tv_title;
         private TextView tv_status;
