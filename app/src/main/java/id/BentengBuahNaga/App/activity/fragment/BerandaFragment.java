@@ -1,7 +1,9 @@
 package id.BentengBuahNaga.App.activity.fragment;
 
 
+import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
@@ -34,6 +37,8 @@ public class BerandaFragment extends Fragment implements BerandaFragmenContract.
     private CarouselView snack;
     private SliderView sliderView;
     private BerandaFragmenPresenter presenter;
+    private Context mContext;
+    RecyclerView recyclerView;
 
     private int[] imgBanner;
     private int[] imgMakanan;
@@ -59,12 +64,17 @@ public class BerandaFragment extends Fragment implements BerandaFragmenContract.
     }
 
     private void initUi(View view) {
+        mContext = getContext();
         presenter = new BerandaFragmenPresenter(this);
-        banner = view.findViewById(R.id.banner);
+      //  banner = view.findViewById(R.id.banner);
 //        makanan = view.findViewById(R.id.makanan);
 //        minuman = view.findViewById(R.id.minuman);
 //        snack = view.findViewById(R.id.snack);
         sliderView = view.findViewById(R.id.makanan);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            sliderView.setNestedScrollingEnabled(false);
+        }
+
     }
 
     private void intitEvent() {

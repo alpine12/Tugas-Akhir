@@ -36,6 +36,13 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    //RECYCLEVIEW ADAPTER
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45'
+
+    //Material Design
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    implementation 'com.github.f0ris.sweetalert:library:1.5.1'
+
     //Network
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'

@@ -5,8 +5,8 @@ import java.util.List;
 
 import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDeffault;
 import id.BentengBuahNaga.App.activity.contract.KeranjangFragmentContract;
-import id.BentengBuahNaga.App.activity.fragment.KeranjangFragment;
 import id.BentengBuahNaga.App.activity.model.KeranjangFragmentModel;
+import id.BentengBuahNaga.App.activity.model.PromoModel;
 import id.BentengBuahNaga.App.network.InitRetrofit;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +34,7 @@ public class KeranjangFragmentPresenter implements KeranjangFragmentContract.Pre
                         view.tampilPesan(res.getMessage());
                         view.viewKeranjang();
 
-                    }else {
+                    } else {
                         view.tampilPesan(res.getMessage());
                         view.hideKeranjang();
                     }
@@ -49,24 +49,52 @@ public class KeranjangFragmentPresenter implements KeranjangFragmentContract.Pre
     }
 
     @Override
-    public void totalPesanan(List<KeranjangFragmentModel> item) {
+    public void kodePromo(String kode) {
+        Call<ResponseDeffault> promo = InitRetrofit.getInstance().promo(kode);
+        promo.enqueue(new Callback<ResponseDeffault>() {
+            @Override
+            public void onResponse(Call<ResponseDeffault> call, Response<ResponseDeffault> response) {
+                ResponseDeffault res = response.body();
+                if (response.isSuccessful()) {
+                    if (res.isStatus()) {
+                        PromoModel item = res.getDetailPromo();
+                        view.kodePromo(item);
+                        view.tampilPesan(res.getMessage());
+                        view.tampilDialogSukses(item.getNamaPromo(), "Besar Potongan "+item.getPotongan()+"%");
 
-        int total = 0;
-        for (int i = 0; i < item.size(); i++) {
-            total += Integer.valueOf(item.get(i).getHarga());
-        }
-        view.totalPesanan(String.valueOf(total));
+                    } else {
+                        view.kodePromo(null);
+                        view.tampilPesan(res.getMessage());
+                        view.tampilDialogGagal("Kode Promo Salah", "Masukkan Kode Promo Yang Benar");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDeffault> call, Throwable t) {
+                view.tampilPesan(t.getMessage());
+            }
+        });
     }
 
     @Override
-    public void bayarPesnan(HashMap<String, String> data, String id,List<KeranjangFragmentModel> item) {
+    public void totalPesanan(List<KeranjangFragmentModel> item, int diskon) {
+        int total = 0;
+        for (int i = 0; i < item.size(); i++) {
+            total += Integer.valueOf(item.get(i).getHarga()) * Integer.valueOf(item.get(i).getJumlah());
+        }
+        view.totalPesanan(String.valueOf(total), diskon);
+    }
+
+    @Override
+    public void bayarPesnan(HashMap<String, String> data, String id, List<KeranjangFragmentModel> item) {
         view.tampilLoading();
         Call<ResponseDeffault> bayar = InitRetrofit.getInstance().checkout(data);
         bayar.enqueue(new Callback<ResponseDeffault>() {
             @Override
             public void onResponse(Call<ResponseDeffault> call, Response<ResponseDeffault> response) {
                 ResponseDeffault res = response.body();
-                if (response.isSuccessful()) {
+                if (response.isSuccessful() && response != null) {
                     if (res.isStatus()) {
                         view.tampilPesan(res.getMessage());
                         deleteListKeranjang(id, item);
@@ -86,7 +114,7 @@ public class KeranjangFragmentPresenter implements KeranjangFragmentContract.Pre
         });
     }
 
-    private void deleteListKeranjang(String id, List<KeranjangFragmentModel> item){
+    private void deleteListKeranjang(String id, List<KeranjangFragmentModel> item) {
         Call<ResponseDeffault> del = InitRetrofit.getInstance().deleteListKeranjang(id);
         del.enqueue(new Callback<ResponseDeffault>() {
             @Override

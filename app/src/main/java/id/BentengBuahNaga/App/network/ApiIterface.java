@@ -12,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiIterface {
 
@@ -65,6 +66,12 @@ public interface ApiIterface {
      */
     @DELETE("keranjang/{id}")
     Call<ResponseDeffault> deleteListKeranjang(@Path("id") String id);
+
+    /*
+     * Promo
+     */
+    @GET("promo")
+    Call<ResponseDeffault> promo(@Query("kode") String kodePromo);
 
     /*
      *Get Daftar Pesanan

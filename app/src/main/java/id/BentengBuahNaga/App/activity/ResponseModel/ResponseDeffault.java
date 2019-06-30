@@ -9,6 +9,7 @@ import id.BentengBuahNaga.App.activity.model.DaftarPesananModel;
 import id.BentengBuahNaga.App.activity.model.DetailDaftarPesananModel;
 import id.BentengBuahNaga.App.activity.model.KeranjangFragmentModel;
 import id.BentengBuahNaga.App.activity.model.LoginModel;
+import id.BentengBuahNaga.App.activity.model.PromoModel;
 
 
 public class ResponseDeffault {
@@ -36,6 +37,13 @@ public class ResponseDeffault {
 
     @SerializedName("daftar detail pesaan")
     private List<DetailDaftarPesananModel> daftarDetailPesaan;
+
+    @SerializedName("detail_promo")
+    private PromoModel detailPromo;
+
+    public PromoModel getDetailPromo() {
+        return detailPromo;
+    }
 
     public List<DetailDaftarPesananModel> getDaftarDetailPesaan() {
         return daftarDetailPesaan;
