@@ -46,13 +46,19 @@ public interface ApiIterface {
     /*
      *insert keranjang
      */
-
     @FormUrlEncoded
     @POST("keranjang")
     Call<ResponseDeffault> tambahKeranjang(@FieldMap HashMap<String, String> data);
 
     @GET("keranjang/{id}")
     Call<ResponseDeffault> getKeranjang(@Path("id") String IdPelanggan);
+
+    /*
+     *Delete Menu Keranjang
+     */
+    @DELETE("keranjang/{param}/{id}")
+    Call<ResponseDeffault> hapusMenuKeranjang(@Path("param") String param,
+                                              @Path("id") String id);
 
     /*
      *CheckOut Keranjang
@@ -64,8 +70,9 @@ public interface ApiIterface {
     /*
      *Delete Keranjang
      */
-    @DELETE("keranjang/{id}")
-    Call<ResponseDeffault> deleteListKeranjang(@Path("id") String id);
+    @DELETE("keranjang/{param}/{id}")
+    Call<ResponseDeffault> deleteListKeranjang(@Path("param") String param,
+                                               @Path("id") String id);
 
     /*
      * Promo

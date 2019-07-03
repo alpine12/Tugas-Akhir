@@ -42,6 +42,10 @@ public class KeranjangFragmentModel implements KeranjangFragmentContract.Model {
     @SerializedName("gambar")
     private String gambar;
 
+    public void setJumlah(String jumlah) {
+        this.jumlah = jumlah;
+    }
+
     public String getIdMenu() {
         return idMenu;
     }

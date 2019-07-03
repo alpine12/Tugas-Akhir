@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/pomegranate</item>
         <item name="colorPrimaryDark">@color/alizarin</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/raleway_semibold</item>
     </style>
 
 </resources>

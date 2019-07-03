@@ -60,6 +60,7 @@ public class DetailMenuTampilanPresenter implements DetailMenuTampilanContract.P
                 if (response.isSuccessful()) {
                     if (res.isStatus()) {
                         view.tampilNotif(res.getMessage());
+                        view.tampilDialogPesan("Berhasil","Pesanan Ditambahkan Ke keranjang");
                     } else {
                         view.tampilNotif(res.getMessage());
                     }
@@ -72,28 +73,5 @@ public class DetailMenuTampilanPresenter implements DetailMenuTampilanContract.P
                 Log.d(TAG, "onFailure: "+t.getMessage());
             }
         });
-
-
-//        AndroidNetworking.post(InitRetrofit.getBaseUrl()+"keranjang")
-//                .addBodyParameter(data)
-//                .setPriority(Priority.MEDIUM)
-//                .setTag("Insert")
-//                .build()
-//                .getAsJSONObject(new JSONObjectRequestListener() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        try {
-//                            view.tampilNotif(response.getString("message"));
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(ANError anError) {
-//                        view.tampilNotif(anError.getMessage());
-//                    }
-//                });
-
     }
 }

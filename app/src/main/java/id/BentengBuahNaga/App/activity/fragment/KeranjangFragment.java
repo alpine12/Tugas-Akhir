@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -37,6 +38,7 @@ import id.BentengBuahNaga.App.activity.model.PromoModel;
 import id.BentengBuahNaga.App.activity.presenter.KeranjangFragmentPresenter;
 import id.BentengBuahNaga.App.helper.FormatRp;
 import id.BentengBuahNaga.App.helper.SharedPreff;
+import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,7 +51,7 @@ public class KeranjangFragment extends Fragment implements KeranjangFragmentCont
     private KeranjangAdapter adapter;
     private String id;
     private TextView tvTotal;
-    private TextView btnBayar;
+    private FancyButton btnBayar;
     private TextView potongan_diskon;
     private String totalPembayran;
     private String listKeranjang;
@@ -57,14 +59,14 @@ public class KeranjangFragment extends Fragment implements KeranjangFragmentCont
     private CardView container;
     private ProgressDialog dialog;
     private EditText inputPromo;
-    private Button submitPromo;
+    private FancyButton submitPromo;
     private Context context;
-
+    private View empetyView;
+   private int potongan;
 
     public KeranjangFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,13 +82,14 @@ public class KeranjangFragment extends Fragment implements KeranjangFragmentCont
     private void initUi(View view) {
         context = getActivity();
         presenter = new KeranjangFragmentPresenter(this);
-        rvKeranjang = view.findViewById(R.id.rvKeranjang);
+        rvKeranjang = view.findViewById(R.id.recyclerview);
         potongan_diskon = view.findViewById(R.id.tv_diskon);
         tvTotal = view.findViewById(R.id.tv_total);
         btnBayar = view.findViewById(R.id.btn_bayar);
         container = view.findViewById(R.id.container);
         inputPromo = view.findViewById(R.id.et_inputPromo);
         submitPromo = view.findViewById(R.id.btn_submitPromo);
+        empetyView = getLayoutInflater().inflate(R.layout.empety_view, (ViewGroup) rvKeranjang.getParent(), false);
     }
 
     private void initEvent() {
@@ -94,6 +97,9 @@ public class KeranjangFragment extends Fragment implements KeranjangFragmentCont
         layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         rvKeranjang.setLayoutManager(layoutManager);
         rvKeranjang.setHasFixedSize(true);
+        adapter = new KeranjangAdapter(R.layout.list_item_daftar_keranjang);
+        rvKeranjang.setAdapter(adapter);
+        adapter.setEmptyView(empetyView);
         presenter.onCLick();
 
         submitPromo.setVisibility(View.GONE);
@@ -105,11 +111,11 @@ public class KeranjangFragment extends Fragment implements KeranjangFragmentCont
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if (TextUtils.isEmpty(inputPromo.getText().toString())){
-                submitPromo.setVisibility(View.GONE);
-            }else {
-                submitPromo.setVisibility(View.VISIBLE);
-            }
+                if (TextUtils.isEmpty(inputPromo.getText().toString())) {
+                    submitPromo.setVisibility(View.GONE);
+                } else {
+                    submitPromo.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -123,40 +129,124 @@ public class KeranjangFragment extends Fragment implements KeranjangFragmentCont
     public void loadPesanan(List<KeranjangFragmentModel> item) {
 
         items = item;
+        Log.d(TAG, "loadPesanan: " + items.size());
         if (items.size() > 0) {
+            presenter.handeShowKeranjang();
             presenter.totalPesanan(item, 0);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            listKeranjang = gson.toJson(item);
+            listKeranjang = gson.toJson(items);
+            adapter.setNewData(item);
+            adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                @Override
+                public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
 
-            adapter = new KeranjangAdapter(items, getActivity());
-            rvKeranjang.setAdapter(adapter);
+                }
+            });
+            adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                @Override
+                public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                    KeranjangFragmentModel item = (KeranjangFragmentModel) adapter.getItem(position);
+                    switch (view.getId()) {
+                        case R.id.btn_delete:
+                            new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Hapus Pesanan Menu")
+                                    .setContentText("Apakah Anda Yakin Untuk Membatalkan ?")
+                                    .setConfirmText("Hapus menu")
+                                    .setCancelText("Tidak")
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            presenter.hapusMenuPesanan(item.getIdMenu(), position);
 
+                                            listKeranjang = gson.toJson(items);
+                                            Log.d(TAG, "onClick: " + listKeranjang);
+                                            sweetAlertDialog.dismissWithAnimation();
+                                            if (items.size() == 1) {
+                                                container.setVisibility(View.GONE);
+                                            }
+                                        }
+                                    })
+                                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            sweetAlertDialog.dismissWithAnimation();
+                                        }
+                                    })
+                                    .show();
+                            break;
 
-
-
+                        case R.id.btn_edit:
+                            final String[] num = new String[1];
+                            ElegantNumberButton button = new ElegantNumberButton(context);
+                            button.setNumber(item.getJumlah());
+                            button.setRange(1, 10);
+                            button.setOnClickListener(new ElegantNumberButton.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                     num[0] = button.getNumber();
+                                }
+                            });
+                            new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Ubah Pesanan")
+                                    .setConfirmText("Selesai")
+                                    .setCustomView(button)
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            String jumlah;
+                                            if (num[0]==null){
+                                                jumlah = item.getJumlah();
+                                            }else {
+                                                jumlah = num[0];
+                                            }
+                                            item.setJumlah(jumlah);
+                                            adapter.notifyItemChanged(position);
+                                            listKeranjang = gson.toJson(items);
+                                            presenter.totalPesanan(items,potongan);
+                                            Log.d(TAG, "onClick: " + listKeranjang);
+                                            sweetAlertDialog.dismissWithAnimation();
+                                        }
+                                    })
+                                    .show();
+                            break;
+                    }
+                }
+            });
+        } else {
+            presenter.handleHideKeranjang();
         }
+    }
+
+    @Override
+    public void hapusPosisiMenu(int position) {
+        adapter.remove(position);
+        presenter.totalPesanan(items, potongan);
+    }
+
+    void cek() {
+        Log.d(TAG, "cek: " + listKeranjang);
     }
 
     @Override
     public void kodePromo(PromoModel item) {
         if (item != null) {
-            int diskon = Integer.valueOf(item.getPotongan());
-            presenter.totalPesanan(items, diskon);
+            potongan = Integer.valueOf(item.getPotongan());
+            presenter.totalPesanan(items, potongan);
         } else {
             presenter.totalPesanan(items, 0);
         }
-
     }
 
     @Override
     public void viewKeranjang() {
-        rvKeranjang.setVisibility(View.VISIBLE);
+        // rvKeranjang.setVisibility(View.VISIBLE);
         container.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideKeranjang() {
-        rvKeranjang.setVisibility(View.GONE);
+        // rvKeranjang.setVisibility(View.GONE);
+        adapter.setNewData(null);
         container.setVisibility(View.GONE);
     }
 
@@ -208,7 +298,6 @@ public class KeranjangFragment extends Fragment implements KeranjangFragmentCont
                 idPengguna = "";
                 kodePromo = inputPromo.getText().toString();
                 totalPembayaran = totalPembayran;
-
 
                 final EditText catatan = new EditText(context);
                 catatan.setLines(8);

@@ -72,7 +72,7 @@ public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.vi
                 }
             });
 
-            Picasso.get().load(InitRetrofit.getIMAGEURL() + menu.getGambar())
+            Picasso.get().load(InitRetrofit.getIMAGEURL() + menu.getGambar()).fit()
                     .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(iconMenu);
             tittleMenu.setText(menu.getNamaMenu());
             hargaMenu.setText(FormatRp.FormatRp(menu.getHarga()));

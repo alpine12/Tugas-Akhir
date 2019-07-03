@@ -2,14 +2,17 @@ package id.BentengBuahNaga.App.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.squareup.picasso.MemoryPolicy;
@@ -17,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.contract.DetailMenuTampilanContract;
 import id.BentengBuahNaga.App.activity.model.DaftarMenuModel;
@@ -77,19 +81,51 @@ public class DetailMenuTampilan extends AppCompatActivity implements DetailMenuT
         btnPesan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String idPelanggan, idMenu, jumlah, harga;
+
+                String idPelanggan, idMenu, harga;
+                final String[] jumlah = new String[1];
                 idPelanggan = Prefs.getString(SharedPreff.getIdPelanggan(), null);
                 idMenu = data.getIdMenu();
-                jumlah = "1";
                 harga = data.getHarga();
 
-                HashMap<String, String> data = new HashMap();
-                data.put("a", idPelanggan);
-                data.put("b", idMenu);
-                data.put("c", jumlah);
-                data.put("d", harga);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
+                );
 
-                presenter.tambahKeranang(data);
+                params.setMargins(100, 0, 0, 0);
+                ElegantNumberButton button = new ElegantNumberButton(context);
+                button.setLayoutParams(params);
+                button.setNumber("1");
+                button.setRange(1, 10);
+                button.setOnClickListener(new ElegantNumberButton.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String num = button.getNumber();
+                        jumlah[0] = num;
+                    }
+                });
+                new SweetAlertDialog(context, SweetAlertDialog.NORMAL_TYPE)
+                        .setTitleText("Masukan Jumlah Pesanan")
+                        .setConfirmText("Pesan")
+                        .setCustomView(button)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                if (  jumlah[0]==null){
+                                    jumlah[0] = "1";
+                                }
+
+                                HashMap<String, String> data = new HashMap();
+                                data.put("a", idPelanggan);
+                                data.put("b", idMenu);
+                                data.put("c", jumlah[0]);
+                                data.put("d", harga);
+                                presenter.tambahKeranang(data);
+                                sweetAlertDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
             }
         });
     }
@@ -112,8 +148,11 @@ public class DetailMenuTampilan extends AppCompatActivity implements DetailMenuT
     }
 
     @Override
-    public void tampilDialogPesan() {
-
+    public void tampilDialogPesan(String titel, String pesan) {
+        new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                .setTitleText(titel)
+                .setContentText(pesan)
+                .show();
     }
 
     @Override

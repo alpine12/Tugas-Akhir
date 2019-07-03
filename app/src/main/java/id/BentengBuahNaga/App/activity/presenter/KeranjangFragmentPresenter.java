@@ -49,6 +49,30 @@ public class KeranjangFragmentPresenter implements KeranjangFragmentContract.Pre
     }
 
     @Override
+    public void hapusMenuPesanan(String idMenu, int position) {
+        Call<ResponseDeffault> hapusMenuPesanan = InitRetrofit.getInstance().hapusMenuKeranjang("hapus", idMenu);
+        hapusMenuPesanan.enqueue(new Callback<ResponseDeffault>() {
+            @Override
+            public void onResponse(Call<ResponseDeffault> call, Response<ResponseDeffault> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ResponseDeffault res = response.body();
+                    if (res.isStatus()) {
+                        view.hapusPosisiMenu(position);
+                        view.tampilDialogSukses("Pesanan Dibatalkan", "Berhasil membatlakan pesanan");
+                    } else {
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDeffault> call, Throwable t) {
+                view.tampilDialogGagal("Gagal","Koneksi Bermasalah");
+            }
+        });
+    }
+
+    @Override
     public void kodePromo(String kode) {
         Call<ResponseDeffault> promo = InitRetrofit.getInstance().promo(kode);
         promo.enqueue(new Callback<ResponseDeffault>() {
@@ -60,7 +84,7 @@ public class KeranjangFragmentPresenter implements KeranjangFragmentContract.Pre
                         PromoModel item = res.getDetailPromo();
                         view.kodePromo(item);
                         view.tampilPesan(res.getMessage());
-                        view.tampilDialogSukses(item.getNamaPromo(), "Besar Potongan "+item.getPotongan()+"%");
+                        view.tampilDialogSukses(item.getNamaPromo(), "Besar Potongan " + item.getPotongan() + "%");
 
                     } else {
                         view.kodePromo(null);
@@ -115,11 +139,11 @@ public class KeranjangFragmentPresenter implements KeranjangFragmentContract.Pre
     }
 
     private void deleteListKeranjang(String id, List<KeranjangFragmentModel> item) {
-        Call<ResponseDeffault> del = InitRetrofit.getInstance().deleteListKeranjang(id);
+        Call<ResponseDeffault> del = InitRetrofit.getInstance().deleteListKeranjang("checkout",id);
         del.enqueue(new Callback<ResponseDeffault>() {
             @Override
             public void onResponse(Call<ResponseDeffault> call, Response<ResponseDeffault> response) {
-
+                view.tampilDialogSukses("Pesanan Telah Diterima", "Silakan Melakukan Pembayaran di Kasir");
                 view.hideKeranjang();
                 view.tampilPesan(response.body().getMessage());
 
@@ -135,5 +159,20 @@ public class KeranjangFragmentPresenter implements KeranjangFragmentContract.Pre
     @Override
     public void onCLick() {
         view.buttonOnclick();
+    }
+
+    @Override
+    public void handleTampilDialog(String title, String pesan) {
+        view.tampilDialogSukses(title, pesan);
+    }
+
+    @Override
+    public void handeShowKeranjang() {
+        view.viewKeranjang();
+    }
+
+    @Override
+    public void handleHideKeranjang() {
+        view.hideKeranjang();
     }
 }

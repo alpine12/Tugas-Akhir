@@ -1,76 +1,34 @@
 package id.BentengBuahNaga.App.activity.adapter;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.model.KeranjangFragmentModel;
 import id.BentengBuahNaga.App.helper.FormatRp;
 import id.BentengBuahNaga.App.network.InitRetrofit;
 
-public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.viewHolder> {
-    private List<KeranjangFragmentModel> item;
-    private Context mContext;
+public class KeranjangAdapter extends BaseQuickAdapter<KeranjangFragmentModel, BaseViewHolder> {
 
-    public KeranjangAdapter(List<KeranjangFragmentModel> item, Context mContext) {
-        this.item = item;
-        this.mContext = mContext;
-        notifyDataSetChanged();
-    }
-
-    public void clearItem(){
-        item.clear();
-    }
-
-    @NonNull
-    @Override
-    public KeranjangAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.list_item_daftar_keranjang, parent, false);
-
-        return new viewHolder(view);
+    public KeranjangAdapter(int layoutResId) {
+        super(layoutResId);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KeranjangAdapter.viewHolder holder, int position) {
-        holder.bindItem(item.get(position));
-    }
+    protected void convert(BaseViewHolder helper, KeranjangFragmentModel item) {
+        Picasso.get().load(InitRetrofit.getIMAGEURL() + item.getGambar()).fit()
+                .into(((ImageView) helper.getView(R.id.img_iconMenu)));
+        ((TextView) helper.getView(R.id.tv_titleMenu)).setText(item.getNamaMenu());
+        ((TextView) helper.getView(R.id.tv_jumlahPesan)).setText("Banyak "+item.getJumlah());
+        helper.setText(R.id.tv_hargaMenu, FormatRp.FormatRp(item.getHarga()));
+        helper.addOnClickListener(R.id.btn_edit).addOnClickListener(R.id.btn_delete);
 
-    @Override
-    public int getItemCount() {
-        return item.size();
-    }
 
-    public  class viewHolder extends RecyclerView.ViewHolder {
-        private ImageView imgIcon;
-        private TextView titleMenu;
-        private TextView jumlah;
-        private TextView harga;
 
-        public viewHolder(@NonNull View v) {
-            super(v);
-
-            imgIcon = v.findViewById(R.id.img_iconMenu);
-            titleMenu = v.findViewById(R.id.tv_titleMenu);
-            jumlah = v.findViewById(R.id.tv_jumlahPesan);
-            harga = v.findViewById(R.id.tv_status);
-        }
-
-        public void bindItem(KeranjangFragmentModel model) {
-            Picasso.get().load(InitRetrofit.getIMAGEURL() + model.getGambar()).fit().into(imgIcon);
-            titleMenu.setText(model.getNamaMenu());
-            jumlah.setText(model.getJumlah());
-            harga.setText(FormatRp.FormatRp(model.getHarga()));
-        }
     }
 }

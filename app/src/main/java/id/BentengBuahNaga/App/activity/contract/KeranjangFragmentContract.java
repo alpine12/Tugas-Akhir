@@ -15,6 +15,8 @@ public interface KeranjangFragmentContract {
 
         void loadPesanan(List<KeranjangFragmentModel> item);
 
+        void hapusPosisiMenu(int position);
+
         void kodePromo(PromoModel item);
 
         void viewKeranjang();
@@ -40,6 +42,10 @@ public interface KeranjangFragmentContract {
 
         void daftarKeranjang(String id);
 
+      //  void handleRemovePosisiMenu(int posotion);
+
+        void hapusMenuPesanan(String idMenu, int position);
+
         void kodePromo(String kode);
 
         void totalPesanan(List<KeranjangFragmentModel> item, int diskon);
@@ -47,5 +53,11 @@ public interface KeranjangFragmentContract {
         void bayarPesnan(HashMap<String, String> data, String id,List<KeranjangFragmentModel> item);
 
         void onCLick();
+
+        void handleTampilDialog(String title, String pesan);
+
+        void handeShowKeranjang();
+
+        void handleHideKeranjang();
     }
 }

@@ -13,7 +13,7 @@ public interface DetailMenuTampilanContract {
 
         void loadItem(DaftarMenuModel menu);
 
-        void tampilDialogPesan();
+        void tampilDialogPesan(String titel, String pesan);
 
         void tampilNotif(String Message);
     }
