@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,8 @@ public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuC
     private Context mContext;
     private ShimmerFrameLayout mShimmerViewContainer;
     private ImageView back;
+    private TextView tittle;
+    private String id;
 
 
     @Override
@@ -49,6 +52,7 @@ public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuC
         rvMenu = findViewById(R.id.rv_daftarMenu);
         layoutManager = new GridLayoutManager(mContext, 2, RecyclerView.VERTICAL, false);
         mShimmerViewContainer = findViewById(R.id.loadingContainer);
+        tittle = findViewById(R.id.title_toolbar);
     }
 
     private void initEvent() {
@@ -57,8 +61,14 @@ public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuC
         rvMenu.setNestedScrollingEnabled(false);
         rvMenu.setItemAnimator(new DefaultItemAnimator());
 
-        String id = getIntent().getStringExtra("param");
-        presenter.getMenu(id);
+        id = getIntent().getStringExtra("param");
+        if (id.equals("1")){
+            tittle.setText("Daftar Makanan");
+        }else if (id.equals("2")){
+            tittle.setText("Daftar Minuman");
+        }else {
+            tittle.setText("Daftar Snack");
+        }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +104,7 @@ public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuC
     protected void onResume() {
         super.onResume();
         mShimmerViewContainer.stopShimmer();
+        presenter.getMenu(id);
     }
 
     @Override

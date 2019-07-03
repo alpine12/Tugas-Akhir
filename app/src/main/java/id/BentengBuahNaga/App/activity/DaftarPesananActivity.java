@@ -2,6 +2,9 @@ package id.BentengBuahNaga.App.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +27,8 @@ public class DaftarPesananActivity extends AppCompatActivity implements DaftarPe
     private RecyclerView.LayoutManager layoutManager;
     private DaftarPesananAdapter adapter;
     private Context mContext;
+    private ImageButton back;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +42,21 @@ public class DaftarPesananActivity extends AppCompatActivity implements DaftarPe
     @Override
     public void initView() {
         mContext = this;
+        back = findViewById(R.id.backArrow);
+        title = findViewById(R.id.title_toolbar);
         rvDaftarPesanan = findViewById(R.id.rv_daftarPesanan);
         layoutManager = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
     }
 
     @Override
     public void initEvent() {
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        title.setText("Daftar Transaksi");
         rvDaftarPesanan.setHasFixedSize(true);
         rvDaftarPesanan.setLayoutManager(layoutManager);
         presenter.daftarPesanan();

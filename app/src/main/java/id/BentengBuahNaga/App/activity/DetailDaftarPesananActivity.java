@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -23,6 +26,8 @@ public class DetailDaftarPesananActivity extends AppCompatActivity implements De
     private DetailDaftarPesananPresenter presenter;
     private RecyclerView rvDetailPesanan;
     private DaftarDetailPesananAdapter adapter;
+    private ImageButton back;
+    private TextView title;
 
 
     @Override
@@ -38,17 +43,23 @@ public class DetailDaftarPesananActivity extends AppCompatActivity implements De
     @Override
     public void initView() {
         context = this;
+        back = findViewById(R.id.backArrow);
+        title = findViewById(R.id.title_toolbar);
         rvDetailPesanan = findViewById(R.id.rv_Detaildaftarpesanan);
 
     }
 
     @Override
     public void initEvent() {
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        title.setText("Daftar Pesanan");
         rvDetailPesanan.setHasFixedSize(true);
         rvDetailPesanan.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-
-        String idPesanan = getIntent().getStringExtra("param");
-        presenter.daftarPesanan(idPesanan);
 
     }
 
@@ -67,5 +78,12 @@ public class DetailDaftarPesananActivity extends AppCompatActivity implements De
     @Override
     public void tampilPesan(String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String idPesanan = getIntent().getStringExtra("param");
+        presenter.daftarPesanan(idPesanan);
     }
 }

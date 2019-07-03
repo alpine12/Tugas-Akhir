@@ -56,6 +56,7 @@ public class DaftarPesananAdapter extends RecyclerView.Adapter<DaftarPesananAdap
         private TextView total;
         private TextView tggljam;
         private TextView status;
+        private TextView jumlah;
         private View v;
         private onItemClickListerner listener;
 
@@ -67,16 +68,18 @@ public class DaftarPesananAdapter extends RecyclerView.Adapter<DaftarPesananAdap
             total = v.findViewById(R.id.tv_totalBayar);
             tggljam = v.findViewById(R.id.tv_tggljamPesan);
             status = v.findViewById(R.id.tv_statusBayar);
+            jumlah = v.findViewById(R.id.tv_jumlahPesanan);
         }
 
         public void bindItem(DaftarPesananModel item) {
-            kodeTrans.setText(item.getKodeTransaksi());
-            total.setText(FormatRp.FormatRp(item.getTotalPembayaran()));
-            tggljam.setText(item.getWaktuTransaksi());
+            kodeTrans.setText(" : "+item.getKodeTransaksi());
+            total.setText(" : "+FormatRp.FormatRp(item.getTotalPembayaran()));
+            tggljam.setText(" : "+item.getWaktuTransaksi());
+            jumlah.setText(" : 0");
             if (item.getStatusBayar().equals("0")) {
-                status.setText("Menunggu Pembayaran");
+                status.setText(" : "+"Menunggu Pembayaran");
             } else {
-                status.setText("Pembayaran Telah Diterima");
+                status.setText(" : "+"Pembayaran Telah Diterima");
             }
         }
 

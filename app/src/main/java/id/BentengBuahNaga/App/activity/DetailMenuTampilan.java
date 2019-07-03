@@ -10,10 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
@@ -28,6 +31,7 @@ import id.BentengBuahNaga.App.activity.presenter.DetailMenuTampilanPresenter;
 import id.BentengBuahNaga.App.helper.FormatRp;
 import id.BentengBuahNaga.App.helper.SharedPreff;
 import id.BentengBuahNaga.App.network.InitRetrofit;
+import mehdi.sakout.fancybuttons.FancyButton;
 
 public class DetailMenuTampilan extends AppCompatActivity implements DetailMenuTampilanContract.View {
     private static final String TAG = "DetailMenuTampilan";
@@ -36,13 +40,16 @@ public class DetailMenuTampilan extends AppCompatActivity implements DetailMenuT
     private ShimmerFrameLayout shimmerFrameLayout;
     private ImageView imgHolder;
     private TextView tvTitle;
+    private TextView tvJenisMenu;
+    private TextView tvStockmenu;
     private TextView tvHarga;
     private TextView tvDescripsi;
     private ConstraintLayout containerItem;
     private ImageView back;
-    private TextView btnPesan;
+    private FancyButton btnPesan;
     private DaftarMenuModel data;
     private String id = "";
+    private CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,23 +67,35 @@ public class DetailMenuTampilan extends AppCompatActivity implements DetailMenuT
         context = this;
         presenter = new DetailMenuTampilanPresenter(this);
         back = findViewById(R.id.backArrow);
-        shimmerFrameLayout = findViewById(R.id.ShimmerFrameLayout);
-        containerItem = findViewById(R.id.containerItem);
+//        shimmerFrameLayout = findViewById(R.id.ShimmerFrameLayout);
+//        containerItem = findViewById(R.id.containerItem);
         imgHolder = findViewById(R.id.img_iconMenu);
+        tvJenisMenu  =findViewById(R.id.tv_jenisMenu);
+        tvStockmenu = findViewById(R.id.tv_stokMenu);
         tvTitle = findViewById(R.id.tv_titleMenu);
         tvHarga = findViewById(R.id.tv_hargaMenu);
         tvDescripsi = findViewById(R.id.tv_DeskripsiMenu);
-        btnPesan = findViewById(R.id.btn_pesan);
+         btnPesan = findViewById(R.id.btn_pesan);
 
     }
 
     private void initEvent() {
-        back.setOnClickListener(new View.OnClickListener() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+
+                onBackPressed();
             }
         });
+
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(
+                ContextCompat.getColor(this, R.color.white));
+        collapsingToolbarLayout.setExpandedTitleColor(
+                ContextCompat.getColor(this, R.color.white));
 
         btnPesan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,18 +151,27 @@ public class DetailMenuTampilan extends AppCompatActivity implements DetailMenuT
 
     @Override
     public void loadingItem() {
-        shimmerFrameLayout.stopShimmer();
-        shimmerFrameLayout.setVisibility(View.GONE);
-        containerItem.setVisibility(View.VISIBLE);
+//        shimmerFrameLayout.stopShimmer();
+        //      shimmerFrameLayout.setVisibility(View.GONE);
+        //    containerItem.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void loadItem(DaftarMenuModel menu) {
         data = menu;
+        collapsingToolbarLayout.setTitle(menu.getNamaMenu());
+        if (menu.getKategori().equals("1")){
+            tvJenisMenu.setText("Makanan Berat");
+        }else if (menu.getKategori().equals("2")){
+            tvJenisMenu.setText("Minuman");
+        }else {
+            tvJenisMenu.setText("Makanan Ringan");
+        }
+        tvStockmenu.setText("Sisa  "+menu.getStok()+" |");
         Picasso.get().load(InitRetrofit.getIMAGEURL() + menu.getGambar()).fit()
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(imgHolder);
         tvTitle.setText(menu.getNamaMenu());
-        tvHarga.setText(FormatRp.FormatRp(menu.getHarga()));
+        tvHarga.setText("Harga "+FormatRp.FormatRp(menu.getHarga()));
         tvDescripsi.setText(menu.getDeskripsi());
     }
 
@@ -164,13 +192,13 @@ public class DetailMenuTampilan extends AppCompatActivity implements DetailMenuT
     protected void onResume() {
         super.onResume();
         presenter.bindItem(id);
-        shimmerFrameLayout.startShimmer();
-        containerItem.setVisibility(View.GONE);
+//        shimmerFrameLayout.startShimmer();
+        //  containerItem.setVisibility(View.GONE);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        shimmerFrameLayout.stopShimmer();
+        // shimmerFrameLayout.stopShimmer();
     }
 }

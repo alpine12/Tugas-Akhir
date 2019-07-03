@@ -85,7 +85,7 @@ public class KeranjangFragment extends Fragment implements KeranjangFragmentCont
         rvKeranjang = view.findViewById(R.id.recyclerview);
         potongan_diskon = view.findViewById(R.id.tv_diskon);
         tvTotal = view.findViewById(R.id.tv_total);
-        btnBayar = view.findViewById(R.id.btn_bayar);
+        btnBayar = view.findViewById(R.id.btn_pesan);
         container = view.findViewById(R.id.container);
         inputPromo = view.findViewById(R.id.et_inputPromo);
         submitPromo = view.findViewById(R.id.btn_submitPromo);

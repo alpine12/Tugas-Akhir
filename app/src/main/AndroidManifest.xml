@@ -11,14 +11,14 @@
         android:name=".aplication.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        tools:replace="android:icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".activity.DetailDaftarPesananActivity"></activity>
+        android:usesCleartextTraffic="true"
+        tools:replace="android:icon">
+        <activity android:name=".activity.DetailDaftarPesananActivity" />
         <activity android:name=".activity.DaftarPesananActivity" />
         <activity
             android:name=".helper.Scanner"
@@ -46,6 +46,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

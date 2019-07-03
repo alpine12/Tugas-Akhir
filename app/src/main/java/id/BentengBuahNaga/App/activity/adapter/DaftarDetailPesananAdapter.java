@@ -51,6 +51,7 @@ public class DaftarDetailPesananAdapter extends RecyclerView.Adapter<DaftarDetai
         private ImageView imgTitle;
         private TextView tv_title;
         private TextView tv_status;
+        private TextView tv_jumlah;
 
         public viewHolder(@NonNull View v) {
             super(v);
@@ -58,16 +59,20 @@ public class DaftarDetailPesananAdapter extends RecyclerView.Adapter<DaftarDetai
             imgTitle = v.findViewById(R.id.img_iconMenu);
             tv_title = v.findViewById(R.id.tv_titleMenu);
             tv_status = v.findViewById(R.id.tv_status);
+            tv_jumlah = v.findViewById(R.id.tv_jumlahPesan);
         }
 
         void bindItem(DetailDaftarPesananModel item) {
             Picasso.get().load(InitRetrofit.getIMAGEURL() + item.getGambar()).fit()
                     .into(imgTitle);
             tv_title.setText(item.getNamaMenu());
+            tv_jumlah.setText("Banyak Pesanan : "+item.getJumlah());
             if (item.getSelesaiMasak().equals("0")) {
                 tv_status.setText("Masih Dalam Proses");
+                tv_status.setBackgroundColor(mContext.getResources().getColor(R.color.red_dragon));
             } else {
                 tv_status.setText("Pesanan Telah Selesai");
+                tv_status.setBackgroundColor(mContext.getResources().getColor(R.color.emelard));
             }
         }
     }
