@@ -2,7 +2,9 @@ package id.BentengBuahNaga.App.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.pixplicity.easyprefs.library.Prefs;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.contract.LoginContract;
 import id.BentengBuahNaga.App.activity.presenter.LoginPresenter;
@@ -58,8 +61,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void loginBerhasil(String message) {
-        PindahActivity.pindahActivity(mContext, BerandaActivity.class);
-        finish();
+        SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                PindahActivity.pindahActivity(mContext, BerandaActivity.class);
+                finish();
+                pDialog.dismiss();
+            }
+        },1500);
+
     }
 
     @Override

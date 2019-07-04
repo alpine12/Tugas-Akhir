@@ -1,64 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/padingDeafault"
-    android:weightSum="100"
-    tools:context=".activity.LoginActivity">
+    android:background="@drawable/login_background">
 
-    <FrameLayout
+    <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="70">
+        android:layout_height="match_parent"
+        android:alpha="0.2"
+        android:background="@color/yelowWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/icon_daftar_pesanan" />
-    </FrameLayout>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_300sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/dragon_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="30">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:alpha="1"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        tools:layout_editor_absoluteX="-16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/alizarin"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:alpha="0.9
-">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:layout_marginEnd="@dimen/_35sdp"
+            android:background="@drawable/bg_edittext_round_gray"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:src="@drawable/user"
+                android:tint="@color/white" />
 
             <EditText
-
                 android:id="@+id/username"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:onClick="masuk"
-                android:text="masuk" />
-
-            <Button
-
-                android:id="@+id/daftar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:onClick="mendaftar"
-                android:text="Daftar Akun" />
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@drawable/bg_edittext_round_gray"
+                android:drawablePadding="@dimen/_8sdp"
+                android:hint="Username"
+                android:paddingStart="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/_14ssp" />
 
         </LinearLayout>
 
-    </FrameLayout>
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_35sdp"
+            android:onClick="masuk"
+            app:fb_borderColor="@color/white"
+            app:fb_borderWidth="1dp"
+            app:fb_defaultColor="@color/alizarin"
+            app:fb_focusColor="@color/fbutton_color_concrete"
+            app:fb_iconPosition="left"
+            app:fb_radius="@dimen/_14sdp"
+            app:fb_text="Masuk"
+            app:fb_textColor="@color/white" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_35sdp"
+            android:onClick="mendaftar"
+            app:fb_borderColor="@color/white"
+            app:fb_borderWidth="1dp"
+            app:fb_defaultColor="@color/alizarin"
+            app:fb_focusColor="@color/fbutton_color_concrete"
+            app:fb_iconPosition="left"
+            app:fb_radius="@dimen/_14sdp"
+            app:fb_text="Daftar"
+            app:fb_textColor="@color/white" />
+    </LinearLayout>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

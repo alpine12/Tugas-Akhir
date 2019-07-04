@@ -8,21 +8,26 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="100">
 
         <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="50"
-            android:background="@color/pomegranate">
+            android:background="@color/pomegranate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
@@ -42,7 +47,7 @@
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:layout_marginBottom="8dp"
                     android:background="@color/white"
                     android:padding="4dp"
                     android:src="@drawable/qr_code"
@@ -70,7 +75,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="NO MEJA"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -93,13 +98,17 @@
 
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="50"
             android:columnCount="2"
             android:orientation="horizontal"
             android:padding="@dimen/padingDeafault"
-            android:rowCount="4">
+            android:rowCount="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
 
             <androidx.cardview.widget.CardView
@@ -109,15 +118,37 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="10dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="@dimen/_3sdp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/_16sdp"
-                    android:src="@drawable/icon_makanan"
-                    android:tint="@color/pomegranate" />
+                    android:orientation="vertical"
+                    android:weightSum="100">
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="80"
+                        android:padding="@dimen/_16sdp"
+                        android:src="@drawable/icon_makanan"
+                        android:tint="@color/pomegranate" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="20"
+                        android:gravity="center"
+                        android:text="MAKANAN"
+                        android:textColor="@color/pomegranate"
+                        android:textSize="@dimen/_18ssp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -127,15 +158,37 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="10dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="@dimen/_3sdp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/_16sdp"
-                    android:src="@drawable/icon_minuman"
-                    android:tint="@color/pomegranate" />
+                    android:orientation="vertical"
+                    android:weightSum="100">
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="80"
+                        android:padding="@dimen/_16sdp"
+                        android:src="@drawable/icon_minuman"
+                        android:tint="@color/pomegranate" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="20"
+                        android:gravity="center"
+                        android:text="MINUMAN"
+                        android:textColor="@color/pomegranate"
+                        android:textSize="@dimen/_18ssp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -145,15 +198,37 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="10dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="@dimen/_3sdp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/_16sdp"
-                    android:src="@drawable/icon_snack"
-                    android:tint="@color/pomegranate" />
+                    android:orientation="vertical"
+                    android:weightSum="100">
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="80"
+                        android:padding="@dimen/_16sdp"
+                        android:src="@drawable/icon_snack"
+                        android:tint="@color/pomegranate" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="20"
+                        android:gravity="center"
+                        android:text="SNACK"
+                        android:textColor="@color/pomegranate"
+                        android:textSize="@dimen/_18ssp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -163,19 +238,41 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="10dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="@dimen/_3sdp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/_16sdp"
-                    android:src="@drawable/icon_daftar_pesanan"
-                    android:tint="@color/pomegranate" />
+                    android:orientation="vertical"
+                    android:weightSum="100">
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="80"
+                        android:padding="@dimen/_16sdp"
+                        android:src="@drawable/icon_daftar_pesanan"
+                        android:tint="@color/pomegranate" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="20"
+                        android:gravity="center"
+                        android:text="PESANAN"
+                        android:textColor="@color/pomegranate"
+                        android:textSize="@dimen/_18ssp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
 
         </GridLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
