@@ -55,6 +55,7 @@ public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.vi
         private ImageView iconMenu;
         private TextView tittleMenu;
         private TextView hargaMenu;
+        private TextView jumlahStok;
 
         public viewHolder(@NonNull View v) {
             super(v);
@@ -62,6 +63,7 @@ public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.vi
             iconMenu = v.findViewById(R.id.iconMenu);
             tittleMenu = v.findViewById(R.id.titleMmenu);
             hargaMenu = v.findViewById(R.id.hargaMenu);
+            jumlahStok = v.findViewById(R.id.stok_menu);
         }
 
         private void bindItem(DaftarMenuModel menu, onClickListerner listerner) {
@@ -75,6 +77,7 @@ public class DaftarMenuAdapter extends RecyclerView.Adapter<DaftarMenuAdapter.vi
             Picasso.get().load(InitRetrofit.getIMAGEURL() + menu.getGambar()).fit()
                     .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(iconMenu);
             tittleMenu.setText(menu.getNamaMenu());
+            jumlahStok.setText("Stok : "+menu.getStok());
             hargaMenu.setText(FormatRp.FormatRp(menu.getHarga()));
         }
     }
