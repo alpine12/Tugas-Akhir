@@ -1,60 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/red_dragon"
     android:orientation="vertical"
-    android:padding="@dimen/padingDeafault"
+    android:padding="@dimen/_16sdp"
     tools:context=".activity.RegisterActivity">
 
-    <EditText
-        android:id="@+id/et_namaPengguna"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nama Pengguna" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/et_namaLengkap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nama Lengkap" />
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_75sdp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/dragon_logo"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_tanggalLahir"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tanggal Lahir" />
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:text="MENDAFTAR"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
-    <EditText
-        android:id="@+id/et_noHp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="No Hp"
-        android:inputType="phone" />
+        <EditText
+            android:id="@+id/et_namaPengguna"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/white"
+            android:hint="Nama Pengguna"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_of_pensive"
+            android:textCursorDrawable="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-    <EditText
-        android:id="@+id/et_pekerjaan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Pekerjaan" />
+        <EditText
+            android:id="@+id/et_namaLengkap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/white"
+            android:hint="Nama Lengkap"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_of_pensive"
+            android:textCursorDrawable="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_namaPengguna" />
 
-    <EditText
-        android:id="@+id/et_alamat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Alamat Lengkap"
-        android:inputType="text|textMultiLine"
-        android:lines="8"
-        android:minLines="4"
-        android:maxLines="10"
-         />
+        <EditText
+            android:id="@+id/et_tanggalLahir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/white"
+            android:hint="Tanggal Lahir"
+            android:inputType="date"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_of_pensive"
+            android:textCursorDrawable="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_namaLengkap" />
 
-    <Button
-        android:onClick="mendaftar"
-        android:id="@+id/mendaftar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="mendaftar" />
+        <EditText
+            android:id="@+id/et_noHp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/white"
+            android:hint="No Hp"
+            android:inputType="phone"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_of_pensive"
+            android:textCursorDrawable="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_tanggalLahir" />
+
+        <EditText
+            android:id="@+id/et_pekerjaan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/white"
+            android:hint="Pekerjaan"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_of_pensive"
+            android:textCursorDrawable="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_noHp" />
+
+        <EditText
+            android:id="@+id/et_alamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/white"
+            android:gravity="top"
+            android:hint="Alamat Lengkap"
+            android:inputType="text|textMultiLine"
+            android:lines="8"
+            android:maxLines="8"
+            android:minLines="4"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_of_pensive"
+            android:textCursorDrawable="@null"
+            app:layout_constraintBottom_toTopOf="@+id/mendaftar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_pekerjaan"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/mendaftar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:onClick="mendaftar"
+            app:fb_borderColor="@color/white"
+            app:fb_borderWidth="@dimen/_2sdp"
+            app:fb_defaultColor="@color/red_dragon"
+            app:fb_focusColor="@color/pomegranate"
+            app:fb_iconPosition="left"
+            app:fb_radius="@dimen/_2sdp"
+            app:fb_text="MENDAFTAR"
+            app:fb_textColor="@color/white"
+            app:fb_textSize="@dimen/_16ssp"
+            app:fb_useSystemFont="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_alamat"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</LinearLayout>
+</FrameLayout>

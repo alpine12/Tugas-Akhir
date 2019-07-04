@@ -2,6 +2,7 @@ package id.BentengBuahNaga.App.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -83,17 +84,21 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         job = pekerjaan.getText().toString();
         alamatlengkap = alamat.getText().toString();
 
-        HashMap<String, String> data = new HashMap<>();
-        data.put("a", token);
-        data.put("b", nmPengguna);
-        data.put("c", nmLengkap);
-        data.put("d", tglLahir);
-        data.put("e", noHp);
-        data.put("f", job);
-        data.put("g", alamatlengkap);
 
-        presenter.tombolMendaftar(data);
+        if (TextUtils.isEmpty(nmPengguna) || TextUtils.isEmpty(nmLengkap) || TextUtils.isEmpty(tglLahir) || TextUtils.isEmpty(noHp)
+                || TextUtils.isEmpty(job) || TextUtils.isEmpty(alamatlengkap)) {
+            Toast.makeText(mContext, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+        } else {
+            HashMap<String, String> data = new HashMap<>();
+            data.put("a", token);
+            data.put("b", nmPengguna);
+            data.put("c", nmLengkap);
+            data.put("d", tglLahir);
+            data.put("e", noHp);
+            data.put("f", job);
+            data.put("g", alamatlengkap);
+
+            presenter.tombolMendaftar(data);
+        }
     }
-
-
 }
