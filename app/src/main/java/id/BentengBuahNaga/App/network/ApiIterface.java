@@ -15,7 +15,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiIterface {
-
     /*
      * Authentikasi
      */
@@ -83,8 +82,9 @@ public interface ApiIterface {
     /*
      *Get Daftar Pesanan
      */
-    @GET("transaksi/{id}")
-    Call<ResponseDeffault> getDaftarPesanan(@Path("id") String id);
+    @GET("transaksi")
+    Call<ResponseDeffault> getDaftarPesanan(@Query("param") String param,
+                                            @Query("id_pelanggan") String idPelanggan);
 
     /*
      *Detail Pesanan

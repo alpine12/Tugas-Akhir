@@ -18,6 +18,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
+        <activity android:name=".activity.DetailHistoryActivity"></activity>
+        <activity android:name=".activity.HistoryTransaksiActivity" />
+        <activity android:name=".activity.DetailAkunActivity" />
         <activity android:name=".activity.DetailDaftarPesananActivity" />
         <activity android:name=".activity.DaftarPesananActivity" />
         <activity

@@ -2,15 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/silver">
+    android:background="@color/bg"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:src="@drawable/empty_icon" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="Kosong"
-        android:textSize="@dimen/_50sdp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical"/>
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="kosong"
+        android:textColor="@color/txt_color" />
 </LinearLayout>

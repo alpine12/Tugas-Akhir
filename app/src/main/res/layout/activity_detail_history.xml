@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.HistoryTransaksiActivity">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/include4"
+        layout="@layout/list_item_layout_daftarpesanan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btn_cetakInvoice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        app:fb_borderColor="@color/white"
+        app:fb_borderWidth="1dp"
+        app:fb_fontIconResource="&#xf249;"
+        app:fb_defaultColor="@color/alizarin"
+        app:fb_focusColor="@color/fbutton_color_concrete"
+        app:fb_iconPosition="left"
+        app:fb_radius="@dimen/_2sdp"
+        app:fb_text="Cetak Invoices"
+        app:fb_textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include4" />
+
+    <include
+        layout="@layout/recycleview_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cetakInvoice" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
