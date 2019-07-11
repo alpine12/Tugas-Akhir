@@ -18,9 +18,12 @@ import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawControlle
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.util.List;
+
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.adapter.SliderImageBerandaAdapter;
 import id.BentengBuahNaga.App.activity.contract.BerandaFragmenContract;
+import id.BentengBuahNaga.App.activity.model.BerandaFragmentModel;
 import id.BentengBuahNaga.App.activity.presenter.BerandaFragmenPresenter;
 
 /**
@@ -32,12 +35,9 @@ public class BerandaFragment extends Fragment implements BerandaFragmenContract.
     private SliderView sliderView;
     private BerandaFragmenPresenter presenter;
     private Context mContext;
-    RecyclerView recyclerView;
+    private SliderImageBerandaAdapter adapter;
+    private View v;
 
-    private int[] imgBanner;
-    private int[] imgMakanan;
-    private int[] imgMinuman;
-    private int[] imgSnack;
 
 
     public BerandaFragment() {
@@ -50,63 +50,35 @@ public class BerandaFragment extends Fragment implements BerandaFragmenContract.
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
+        presenter = new BerandaFragmenPresenter(this);
+        sliderView = view.findViewById(R.id.makanan);
+        presenter.initMain();
 
-        initUi(view);
-        intitEvent();
+        v = view;
 
         return view;
     }
-
-    private void initUi(View view) {
-        mContext = getContext();
-        presenter = new BerandaFragmenPresenter(this);
-        //  banner = view.findViewById(R.id.banner);
-//        makanan = view.findViewById(R.id.makanan);
-//        minuman = view.findViewById(R.id.minuman);
-//        snack = view.findViewById(R.id.snack);
-        sliderView = view.findViewById(R.id.makanan);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            sliderView.setNestedScrollingEnabled(false);
-        }
+    @Override
+    public void initView() {
+        mContext = getActivity();
 
     }
 
-    private void intitEvent() {
-        //presenter.initbanner();
-        ImageSlider();
-    }
-
-    void ImageSlider() {
-
-        final SliderImageBerandaAdapter adapter = new SliderImageBerandaAdapter(getContext());
-        adapter.setCount(5);
-
-        sliderView.setSliderAdapter(adapter);
-        adapter.notifyDataSetChanged();
+    @Override
+    public void initEvent() {
         sliderView.getChildCount();
-
         sliderView.setIndicatorAnimation(IndicatorAnimations.SLIDE); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
         sliderView.setIndicatorSelectedColor(Color.WHITE);
         sliderView.setIndicatorUnselectedColor(Color.GRAY);
-
-
-        sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
-            @Override
-            public void onIndicatorClicked(int position) {
-                sliderView.setCurrentPagePosition(position);
-            }
-        });
-
-
+        presenter.getBanner();
     }
 
     @Override
-    public void loadBanner(int[] data1, int[] data2, int[] data3, int[] data4) {
+    public void loadBanner(List<BerandaFragmentModel> item) {
 
-
+        adapter = new SliderImageBerandaAdapter(mContext,item);
+        sliderView.setSliderAdapter(adapter);
     }
-
-
 }

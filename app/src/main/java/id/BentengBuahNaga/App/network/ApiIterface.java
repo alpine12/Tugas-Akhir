@@ -31,6 +31,13 @@ public interface ApiIterface {
     Call<ResponseDeffault> Register(@FieldMap Map<String, String> data);
 
     /*
+     * Banner
+     */
+    @GET("banner")
+    Call<ResponseDeffault> banner();
+
+
+    /*
      * Load Daftar Menu
      */
     @GET("daftar_menu/{id}")
@@ -76,7 +83,7 @@ public interface ApiIterface {
     /*
      * Promo
      */
-    @GET("promo")
+    @GET("promo_app")
     Call<ResponseDeffault> promo(@Query("kode") String kodePromo);
 
     /*

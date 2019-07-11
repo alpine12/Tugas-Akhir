@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -30,6 +32,8 @@ public class HistoryTransaksiActivity extends AppCompatActivity implements Histo
     private Context mContext;
     private HistoryTransaksiAdapter adapter;
     private View emptyView;
+    private ImageButton back;
+    private TextView tittle;
 
 
     @Override
@@ -44,6 +48,8 @@ public class HistoryTransaksiActivity extends AppCompatActivity implements Histo
     @Override
     public void initUi() {
         mContext = this;
+        back = findViewById(R.id.backArrow);
+        tittle = findViewById(R.id.title_toolbar);
         rvHistoryPesanan = findViewById(R.id.recyclerview);
        emptyView = getLayoutInflater().inflate(R.layout.empety_view, (ViewGroup) rvHistoryPesanan.getParent(), false);
 
@@ -51,6 +57,14 @@ public class HistoryTransaksiActivity extends AppCompatActivity implements Histo
 
     @Override
     public void initEvent() {
+        tittle.setText("Riwayat Transaksi");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         rvHistoryPesanan.setHasFixedSize(true);
         rvHistoryPesanan.setLayoutManager(new LinearLayoutManager(this));
         adapter = new HistoryTransaksiAdapter(R.layout.list_item_layout_daftarpesanan);

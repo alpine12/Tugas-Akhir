@@ -1,15 +1,19 @@
 package id.BentengBuahNaga.App.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 import id.BentengBuahNaga.App.R;
@@ -27,6 +31,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     private EditText pekerjaan;
     private EditText alamat;
     private String token;
+    private Calendar cal;
+    private int day;
+    private int month;
+    private int year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,12 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
 
     private void initUi() {
         presenter = new RegisterPresenter(this);
+
+        cal = Calendar.getInstance();
+        day = cal.get(Calendar.DAY_OF_MONTH);
+        month = cal.get(Calendar.MONTH);
+        year = cal.get(Calendar.YEAR);
+
         namaPengguna = findViewById(R.id.et_namaPengguna);
         namalengkap = findViewById(R.id.et_namaLengkap);
         tanggalLahir = findViewById(R.id.et_tanggalLahir);
@@ -50,6 +64,25 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
     private void initEvent() {
+        tanggalLahir.setInputType(InputType.TYPE_NULL);
+        tanggalLahir.requestFocus();
+        tanggalLahir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog.OnDateSetListener listener=new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+                    {
+
+                        tanggalLahir.setText(dayOfMonth+"-"+monthOfYear+"-"+year);
+
+                    }};
+
+                DatePickerDialog dpDialog=new DatePickerDialog(mContext, listener, year, month, day);
+                dpDialog.show();
+            }
+        });
 
     }
 

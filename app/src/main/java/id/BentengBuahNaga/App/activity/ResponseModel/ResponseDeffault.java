@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import id.BentengBuahNaga.App.activity.model.BerandaFragmentModel;
 import id.BentengBuahNaga.App.activity.model.DaftarMenuModel;
 import id.BentengBuahNaga.App.activity.model.DaftarPesananModel;
 import id.BentengBuahNaga.App.activity.model.DetailDaftarPesananModel;
@@ -40,6 +41,13 @@ public class ResponseDeffault {
 
     @SerializedName("detail_promo")
     private PromoModel detailPromo;
+
+    @SerializedName("Banner")
+    private List<BerandaFragmentModel> banner;
+
+    public List<BerandaFragmentModel> getBanner() {
+        return banner;
+    }
 
     public PromoModel getDetailPromo() {
         return detailPromo;

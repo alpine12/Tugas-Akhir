@@ -1,7 +1,12 @@
 package id.BentengBuahNaga.App.activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +25,7 @@ import id.BentengBuahNaga.App.activity.contract.DetailHistoryTransaksiContract;
 import id.BentengBuahNaga.App.activity.model.DaftarPesananModel;
 import id.BentengBuahNaga.App.activity.model.DetailDaftarPesananModel;
 import id.BentengBuahNaga.App.activity.presenter.DetailHistoryTransaksiPresenter;
+import mehdi.sakout.fancybuttons.FancyButton;
 
 public class DetailHistoryActivity extends AppCompatActivity implements DetailHistoryTransaksiContract.View {
     private static final String TAG = "DetailHistoryActivity";
@@ -32,6 +38,10 @@ public class DetailHistoryActivity extends AppCompatActivity implements DetailHi
     private TextView jumlah;
     private DaftarDetailPesananAdapter adapter;
     private Context mContext;
+    private ImageButton back;
+    private TextView tittle;
+    private FancyButton cetak;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,16 +55,26 @@ public class DetailHistoryActivity extends AppCompatActivity implements DetailHi
     @Override
     public void initUi() {
         mContext = this;
+        back = findViewById(R.id.backArrow);
+        tittle = findViewById(R.id.title_toolbar);
         kodeTrans = findViewById(R.id.tv_kodeTransaksi);
         total = findViewById(R.id.tv_totalBayar);
         tggljam = findViewById(R.id.tv_tggljamPesan);
         status = findViewById(R.id.tv_statusBayar);
         jumlah = findViewById(R.id.tv_jumlahPesanan);
+        cetak = findViewById(R.id.btn_cetakInvoice);
         rvDaftarPesanan = findViewById(R.id.recyclerview);
     }
 
     @Override
     public void initEvent() {
+        tittle.setText("Detail Transaksi");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         String data = getIntent().getStringExtra("param");
         Gson gson = new Gson();
         DaftarPesananModel item = gson.fromJson(data, DaftarPesananModel.class);
@@ -65,6 +85,22 @@ public class DetailHistoryActivity extends AppCompatActivity implements DetailHi
         jumlah.setText("0");
         rvDaftarPesanan.setHasFixedSize(true);
         rvDaftarPesanan.setLayoutManager(new LinearLayoutManager(this));
+        presenter.getPesanan(item.getIdPesanan());
+
+        cetak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    String URL = "http://google.com";
+                    Uri webpage = Uri.parse(URL);
+                    Intent myIntent = new Intent(Intent.ACTION_VIEW, webpage);
+                    startActivity(myIntent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(mContext, "No application can handle this request. Please install a web browser or check your URL.",  Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
