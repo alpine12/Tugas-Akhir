@@ -22,6 +22,8 @@ public class DetailHistoryTransaksiPresenter implements DetailHistoryTransaksiCo
     public void intMain() {
         v.initUi();
         v.initEvent();
+
+
     }
 
     @Override

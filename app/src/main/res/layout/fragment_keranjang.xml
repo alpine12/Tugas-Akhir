@@ -130,7 +130,7 @@
                     app:layout_constraintTop_toTopOf="@+id/btn_delete" />
 
                 <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btn_pesan"
+                    android:id="@+id/btn_pesan_snack"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_4sdp"

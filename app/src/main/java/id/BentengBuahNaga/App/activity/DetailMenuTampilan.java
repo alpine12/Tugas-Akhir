@@ -2,7 +2,6 @@ package id.BentengBuahNaga.App.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -75,7 +74,7 @@ public class DetailMenuTampilan extends AppCompatActivity implements DetailMenuT
         tvTitle = findViewById(R.id.tv_titleMenu);
         tvHarga = findViewById(R.id.tv_hargaMenu);
         tvDescripsi = findViewById(R.id.tv_DeskripsiMenu);
-         btnPesan = findViewById(R.id.btn_pesan);
+         btnPesan = findViewById(R.id.btn_pesan_snack);
 
     }
 

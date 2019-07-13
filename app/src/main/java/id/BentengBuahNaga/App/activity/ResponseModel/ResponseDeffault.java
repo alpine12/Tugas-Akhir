@@ -10,6 +10,7 @@ import id.BentengBuahNaga.App.activity.model.DaftarPesananModel;
 import id.BentengBuahNaga.App.activity.model.DetailDaftarPesananModel;
 import id.BentengBuahNaga.App.activity.model.KeranjangFragmentModel;
 import id.BentengBuahNaga.App.activity.model.LoginModel;
+import id.BentengBuahNaga.App.activity.model.MenuFavoritModel;
 import id.BentengBuahNaga.App.activity.model.PromoModel;
 
 
@@ -45,8 +46,15 @@ public class ResponseDeffault {
     @SerializedName("Banner")
     private List<BerandaFragmentModel> banner;
 
+    @SerializedName("Menu favorit")
+    private List<MenuFavoritModel> menuFavorit;
+
     public List<BerandaFragmentModel> getBanner() {
         return banner;
+    }
+
+    public List<MenuFavoritModel> getMenuFavorit() {
+        return menuFavorit;
     }
 
     public PromoModel getDetailPromo() {

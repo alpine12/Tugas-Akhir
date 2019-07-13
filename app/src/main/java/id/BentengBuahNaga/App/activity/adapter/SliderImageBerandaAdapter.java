@@ -9,14 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import id.BentengBuahNaga.App.R;
+import id.BentengBuahNaga.App.activity.DetailBannerActivity;
 import id.BentengBuahNaga.App.activity.model.BerandaFragmentModel;
 import id.BentengBuahNaga.App.network.InitRetrofit;
+import id.BentengBuahNaga.App.utils.PindahActivity;
 
 public class SliderImageBerandaAdapter extends SliderViewAdapter<SliderImageBerandaAdapter.viewHolder> {
 
@@ -65,10 +68,12 @@ public class SliderImageBerandaAdapter extends SliderViewAdapter<SliderImageBera
             textViewDescription.setTextSize(16);
             textViewDescription.setTextColor(Color.WHITE);
             textViewDescription.setText(item.getJudulBanner());
+            Gson gson = new Gson();
+            String data = gson.toJson(item);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, item.getDeskripsi(), Toast.LENGTH_SHORT).show();
+                    PindahActivity.pindahActivityParam(context, DetailBannerActivity.class, data);
                 }
             });
         }
