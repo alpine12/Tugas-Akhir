@@ -69,6 +69,7 @@ public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuC
         }else {
             tittle.setText("Daftar Snack");
         }
+        presenter.getMenu(id);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +105,6 @@ public class DaftarMenuActivity extends AppCompatActivity implements DaftarMenuC
     protected void onResume() {
         super.onResume();
         mShimmerViewContainer.stopShimmer();
-        presenter.getMenu(id);
     }
 
     @Override
