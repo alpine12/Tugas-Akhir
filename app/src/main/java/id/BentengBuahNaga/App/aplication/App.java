@@ -1,22 +1,51 @@
 package id.BentengBuahNaga.App.aplication;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.os.Build;
 
 import com.pixplicity.easyprefs.library.Prefs;
+
+import id.BentengBuahNaga.App.R;
 
 public class App extends Application {
 
     private static App mInstance = null;
     public Context currentactivity = null;
+    public static final String CHANEL_PROMOSI = "CHANEL PROMOSI";
+    public static final String CHANEL_PESANAN = "CHANEL PESANAN";
 
     @Override
     public void onCreate() {
         super.onCreate();
+        createNotificationChanel();
 
         buildSharedPreff();
 
+
+    }
+
+    private void createNotificationChanel(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel1 = new NotificationChannel(CHANEL_PROMOSI,"promosi",
+                    NotificationManager.IMPORTANCE_HIGH);
+            channel1.setDescription("PROMOSI");
+            channel1.enableLights(true);
+            channel1.setShowBadge(true);
+
+            NotificationChannel channel2 = new NotificationChannel(CHANEL_PESANAN,"pesanan",
+                    NotificationManager.IMPORTANCE_HIGH);
+            channel2.setDescription("INFORMASI PESANAN");
+            channel2.enableLights(true);
+            channel2.setShowBadge(true);
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel1);
+            manager.createNotificationChannel(channel2);
+        }
     }
 
     private void buildSharedPreff(){
@@ -42,4 +71,6 @@ public class App extends Application {
         }
         return mInstance;
     }
+
+
 }

@@ -15,6 +15,51 @@
       },
       "oauth_client": [
         {
+          "client_id": "170838304337-gilvkqm4a05vh5777ncilo13ohqhoklo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.BentengBuahNaga.App",
+            "certificate_hash": "b5122fe1af7e4b64387d7116a045773411661185"
+          }
+        },
+        {
+          "client_id": "170838304337-dfdc9jot2i5cl63921t0gsl9k41k0n9s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5cwhaXktVFonmlUBMzWnYRFGW50zjjTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170838304337-dfdc9jot2i5cl63921t0gsl9k41k0n9s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170838304337:android:b3839c46366e4326",
+        "android_client_info": {
+          "package_name": "id.bentengbuahnaga.MangementApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170838304337-k6treapkthp9irlsf81mast5bjcg30eq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.bentengbuahnaga.MangementApp",
+            "certificate_hash": "56f597e5acb92f025ab8312adb759c4bc77d30eb"
+          }
+        },
+        {
           "client_id": "170838304337-dfdc9jot2i5cl63921t0gsl9k41k0n9s.apps.googleusercontent.com",
           "client_type": 3
         }

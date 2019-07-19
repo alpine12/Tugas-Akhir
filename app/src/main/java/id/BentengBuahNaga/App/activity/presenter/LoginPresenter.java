@@ -24,6 +24,7 @@ import retrofit2.Response;
 public class LoginPresenter implements LoginContract.Presenter {
     private static final String TAG = "LoginPresenter";
     private LoginContract.View view;
+    private String token;
 
     public LoginPresenter(LoginContract.View view) {
         this.view = view;
@@ -55,6 +56,8 @@ public class LoginPresenter implements LoginContract.Presenter {
                     checkLoggin(username, token);
                 }
             });
+
+            getToken();
         }
     }
 
@@ -97,6 +100,27 @@ public class LoginPresenter implements LoginContract.Presenter {
         Prefs.putString(SharedPreff.getAlamat(), model.getAlamat());
 
     }
+
+    private void getToken() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+                        // Get new Instance ID token
+                        token = task.getResult().getToken();
+                        // Log and toast
+                        String msg = "Token Result : " + token;
+                        Log.d(TAG, msg);
+                        //Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
 
 
 }

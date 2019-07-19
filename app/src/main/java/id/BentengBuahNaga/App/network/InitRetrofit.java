@@ -15,7 +15,6 @@ public class InitRetrofit {
 //     private static final String URL = "http://192.168.6.199/";
    //private static final String URL = "http://192.168.0.106/";
 
-
 //    private static final String BASE_URL =URL+ "simcafe/api_client/";
 //    private static final String IMAGEURL = URL+"simcafe/assets/img/foto_menu/";
 //    private static final String IMAGEURL_BANNER = URL+"simcafe/assets/img/banner_web/";

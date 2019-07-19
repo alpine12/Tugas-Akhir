@@ -1,16 +1,15 @@
 package id.BentengBuahNaga.App.activity.fragment;
 
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import com.pixplicity.easyprefs.library.Prefs;
@@ -20,7 +19,6 @@ import id.BentengBuahNaga.App.activity.HistoryTransaksiActivity;
 import id.BentengBuahNaga.App.activity.LoginActivity;
 import id.BentengBuahNaga.App.activity.contract.AkunFragmenContract;
 import id.BentengBuahNaga.App.activity.presenter.AkunFragmenPresenter;
-import id.BentengBuahNaga.App.helper.SharedPreff;
 import id.BentengBuahNaga.App.utils.PindahActivity;
 
 /**
@@ -34,6 +32,8 @@ public class AkunFragment extends Fragment implements AkunFragmenContract.View, 
     private AkunFragmenPresenter presenter;
     private View v;
     private Context context;
+    private NotificationManagerCompat notificationManager;
+    private NotificationManager manager;
 
     public AkunFragment() {
         // Required empty public constructor
@@ -68,6 +68,9 @@ public class AkunFragment extends Fragment implements AkunFragmenContract.View, 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.detail_akun:
+                break;
+
             case R.id.history_transaksi:
                 PindahActivity.pindahActivity(context, HistoryTransaksiActivity.class);
                 break;
@@ -78,6 +81,4 @@ public class AkunFragment extends Fragment implements AkunFragmenContract.View, 
                 break;
         }
     }
-
-
 }

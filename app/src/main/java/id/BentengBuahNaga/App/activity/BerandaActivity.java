@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -95,4 +96,8 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
                     return true;
                 }
             };
+
+    public void showMessage(String pesan){
+        Toast.makeText(this, pesan, Toast.LENGTH_SHORT).show();
+    }
 }

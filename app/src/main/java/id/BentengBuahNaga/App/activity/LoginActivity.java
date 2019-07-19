@@ -105,5 +105,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         App.getInstance().setCurrentactivity(null);
     }
 
+    public void Toas(String pesan){
+        Toast.makeText(mContext, pesan, Toast.LENGTH_SHORT).show();
+    }
 
 }

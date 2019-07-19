@@ -12,14 +12,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/_16sdp">
-        <TextView
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/detail_akun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_10sdp"
-            android:text="Detail Akun"
-            android:background="@drawable/top_bottom_line_gray"
-            android:textSize="@dimen/_17ssp"
-            />
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                android:text="Detail Akun"
+                android:textSize="@dimen/_17ssp" />
+
+        </androidx.cardview.widget.CardView>
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/history_transaksi"
