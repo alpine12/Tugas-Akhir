@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import id.BentengBuahNaga.App.R;
+import id.BentengBuahNaga.App.activity.DetailAkunActivity;
 import id.BentengBuahNaga.App.activity.HistoryTransaksiActivity;
 import id.BentengBuahNaga.App.activity.LoginActivity;
 import id.BentengBuahNaga.App.activity.contract.AkunFragmenContract;
@@ -55,12 +56,14 @@ public class AkunFragment extends Fragment implements AkunFragmenContract.View, 
     @Override
     public void initUi() {
         context =getActivity();
+        detailAkun = v.findViewById(R.id.detail_akun);
         transaksiHistor = v.findViewById(R.id.history_transaksi);
         keluar = v.findViewById(R.id.keluar);
     }
 
     @Override
     public void initEvent() {
+        detailAkun.setOnClickListener(this);
         transaksiHistor.setOnClickListener(this);
         keluar.setOnClickListener(this);
     }
@@ -69,6 +72,8 @@ public class AkunFragment extends Fragment implements AkunFragmenContract.View, 
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.detail_akun:
+
+                PindahActivity.pindahActivity(context, DetailAkunActivity.class);
                 break;
 
             case R.id.history_transaksi:

@@ -96,6 +96,7 @@ public class LoginPresenter implements LoginContract.Presenter {
         Prefs.putString(SharedPreff.getNamaPengguna(), model.getNamaPengguna());
         Prefs.putString(SharedPreff.getNamaLengkap(), model.getNamaLengkap());
         Prefs.putString(SharedPreff.getNoHp(), model.getNoHp());
+        Prefs.putString(SharedPreff.getPekerjaan(), model.getPekerjaan());
         Prefs.putString(SharedPreff.getTanggalLahir(), model.getTanggalLahir());
         Prefs.putString(SharedPreff.getAlamat(), model.getAlamat());
 

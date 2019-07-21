@@ -14,11 +14,17 @@ public class SharedPreff {
 
     private static String tanggalLahir = "tanggalLahir";
 
+    private static String pekerjaan = "pekerjaan";
+
     private static String alamat = "alamat";
 
     private static String meja = "meja";
 
     private static String isLogin = "login";
+
+    public static String getPekerjaan() {
+        return pekerjaan;
+    }
 
     public static String getIsLogin() {
         return isLogin;
