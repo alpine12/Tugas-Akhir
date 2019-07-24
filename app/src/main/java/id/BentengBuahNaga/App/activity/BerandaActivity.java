@@ -27,12 +27,10 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
     private ViewPager viewPager;
     private SectionPageAdapter viewPageradapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beranda);
-
         initUi();
         initEvent();
     }
@@ -63,7 +61,6 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
         viewPageradapter.addFragmen(akun);
         viewPager.setAdapter(viewPageradapter);
         bottomNav.setupWithViewPager(viewPager);
-
     }
 
     @Override
@@ -91,8 +88,7 @@ public class BerandaActivity extends AppCompatActivity implements BerandaContrac
                             break;
                         case R.id.akun:
                             viewPager.setCurrentItem(3);
-                            break;
-                    }
+                            break;                    }
                     return true;
                 }
             };

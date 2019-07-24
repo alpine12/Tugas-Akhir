@@ -54,10 +54,17 @@ public class FirebaseCloudMessaging extends FirebaseMessagingService {
             String title = remoteMessage.getData().get("title");
             String body = remoteMessage.getData().get("message");
 
+            if (chanel.equals("PESANAN")){
+                notifPesanan(id,chanel,title,body);
+            }
+
             if (checkApp()){
 
             }else {
-                createNotification(id, chanel, title, body);
+
+                if (chanel.equals("PROMOSI")){
+                    notifPromosi(id, chanel, title, body);
+                }
             }
 
             if (/* Check if data needs to be processed by long running job */ true) {
@@ -120,7 +127,7 @@ public class FirebaseCloudMessaging extends FirebaseMessagingService {
         }
     }
 
-    private void createNotification(int id, String Chanel, String title, String text) {
+    private void notifPromosi(int id, String Chanel, String title, String text) {
 
         Notification notification = new NotificationCompat.Builder(this, Chanel)
                 .setSmallIcon(R.mipmap.ic_icon_app)
@@ -134,6 +141,20 @@ public class FirebaseCloudMessaging extends FirebaseMessagingService {
                 .build();
         NotificationManagerCompat manager = NotificationManagerCompat.from(this);
         manager.notify(id, notification);
+    }
+
+    private void notifPesanan(int id, String Chanel, String title, String text){
+        Notification notification = new NotificationCompat.Builder(this, Chanel)
+                .setSmallIcon(R.mipmap.ic_icon_app_round)
+                .setContentTitle(title)
+                .setContentText(text)
+                .setAutoCancel(true)
+                .setContentIntent(PindahActivity.pendingIntent(this,SplashScreen.class))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .build();
+
+        NotificationManagerCompat manager = NotificationManagerCompat.from(this);
+        manager.notify(id,notification);
     }
 
 

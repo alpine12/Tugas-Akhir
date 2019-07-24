@@ -15,8 +15,8 @@ public class App extends Application {
 
     private static App mInstance = null;
     public Context currentactivity = null;
-    public static final String CHANEL_PROMOSI = "CHANEL PROMOSI";
-    public static final String CHANEL_PESANAN = "CHANEL PESANAN";
+    public static final String CHANEL_PROMOSI = "PROMOSI";
+    public static final String CHANEL_PESANAN = "PESANAN";
 
     @Override
     public void onCreate() {
@@ -30,15 +30,15 @@ public class App extends Application {
 
     private void createNotificationChanel(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel1 = new NotificationChannel(CHANEL_PROMOSI,"promosi",
+            NotificationChannel channel1 = new NotificationChannel(CHANEL_PROMOSI,"PROMOSI",
                     NotificationManager.IMPORTANCE_HIGH);
-            channel1.setDescription("PROMOSI");
+            channel1.setDescription("Promosi dan Event");
             channel1.enableLights(true);
             channel1.setShowBadge(true);
 
-            NotificationChannel channel2 = new NotificationChannel(CHANEL_PESANAN,"pesanan",
+            NotificationChannel channel2 = new NotificationChannel(CHANEL_PESANAN,"PESANAN",
                     NotificationManager.IMPORTANCE_HIGH);
-            channel2.setDescription("INFORMASI PESANAN");
+            channel2.setDescription("INFORMASI PESANAN dan PEMBAYARAN");
             channel2.enableLights(true);
             channel2.setShowBadge(true);
 

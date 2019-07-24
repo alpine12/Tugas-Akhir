@@ -116,10 +116,8 @@ public class LoginPresenter implements LoginContract.Presenter {
                         // Log and toast
                         String msg = "Token Result : " + token;
                         Log.d(TAG, msg);
-                        //Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 
 
