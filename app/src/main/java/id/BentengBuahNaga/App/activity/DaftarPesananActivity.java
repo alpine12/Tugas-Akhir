@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class DaftarPesananActivity extends AppCompatActivity implements DaftarPe
     private Context mContext;
     private ImageButton back;
     private TextView title;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class DaftarPesananActivity extends AppCompatActivity implements DaftarPe
         title = findViewById(R.id.title_toolbar);
         rvDaftarPesanan = findViewById(R.id.rv_daftarPesanan);
         layoutManager = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
+        swipeRefreshLayout = findViewById(R.id.swipeRefresh);
     }
 
     @Override
@@ -60,6 +63,15 @@ public class DaftarPesananActivity extends AppCompatActivity implements DaftarPe
         rvDaftarPesanan.setHasFixedSize(true);
         rvDaftarPesanan.setLayoutManager(layoutManager);
         presenter.daftarPesanan();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+
+                presenter.daftarPesanan();
+            }
+        });
     }
 
     @Override
@@ -77,8 +89,8 @@ public class DaftarPesananActivity extends AppCompatActivity implements DaftarPe
     }
 
     @Override
-    public void tampilLoading() {
-
+    public void dismisRefresh() {
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

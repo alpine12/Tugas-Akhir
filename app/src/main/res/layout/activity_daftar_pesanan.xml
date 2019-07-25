@@ -12,10 +12,18 @@
         android:layout_width="match_parent"
         layout="@layout/toolbar_main"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_daftarPesanan"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        tools:listitem="@layout/list_item_layout_daftarpesanan"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_daftarPesanan"
+            android:layout_width="match_parent"
+            tools:listitem="@layout/list_item_layout_daftarpesanan"
+            android:layout_height="match_parent"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>

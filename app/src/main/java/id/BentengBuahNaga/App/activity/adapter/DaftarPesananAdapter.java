@@ -1,6 +1,7 @@
 package id.BentengBuahNaga.App.activity.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import id.BentengBuahNaga.App.activity.model.DaftarPesananModel;
 import id.BentengBuahNaga.App.helper.FormatRp;
 
 public class DaftarPesananAdapter extends RecyclerView.Adapter<DaftarPesananAdapter.viewHolder> {
-
+    private static final String TAG = "DaftarPesananAdapter";
     private List<DaftarPesananModel> item;
     private Context context;
     private onItemClickListerner mListener;
@@ -68,14 +69,23 @@ public class DaftarPesananAdapter extends RecyclerView.Adapter<DaftarPesananAdap
             total = v.findViewById(R.id.tv_totalBayar);
             tggljam = v.findViewById(R.id.tv_tggljamPesan);
             status = v.findViewById(R.id.tv_statusBayar);
-            jumlah = v.findViewById(R.id.tv_jumlahPesanan);
+
         }
 
         public void bindItem(DaftarPesananModel item) {
             kodeTrans.setText(" : "+item.getKodeTransaksi());
-            total.setText(" : "+FormatRp.FormatRp(item.getTotalPembayaran()));
+            if (item.getKodePromo().equals("null")) {
+                total.setText(" : " + FormatRp.FormatRp(item.getTotalPembayaran()));
+            } else {
+                int total_bayar = Integer.parseInt(item.getTotalPembayaran());
+                int diskon = Integer.parseInt(item.getPotongan());
+                int potongan = (total_bayar - ((total_bayar * diskon) / 100));
+                Log.d(TAG, "bindItem: "+potongan+" "+total_bayar+" "+diskon);
+                total.setText(" : "+FormatRp.FormatRp(String.valueOf(potongan)));
+            }
+
             tggljam.setText(" : "+item.getWaktuTransaksi());
-            jumlah.setText(" : 0");
+
             if (item.getStatusBayar().equals("0")) {
                 status.setText(" : "+"Menunggu Pembayaran");
             } else {

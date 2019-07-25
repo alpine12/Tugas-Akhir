@@ -40,8 +40,10 @@ public class DaftarPesananPresenter implements DaftarPesananContract.Presenter {
                         List<DaftarPesananModel> item = res.getDaftarPesaan();
                         v.loadData(item);
                         v.tampilPesan(res.getMessage());
+                        v.dismisRefresh();
                     } else {
                         v.tampilPesan(res.getMessage());
+                        v.dismisRefresh();
                     }
                 }
             }
@@ -49,6 +51,7 @@ public class DaftarPesananPresenter implements DaftarPesananContract.Presenter {
             @Override
             public void onFailure(Call<ResponseDeffault> call, Throwable t) {
                 v.tampilPesan(t.getMessage());
+                v.dismisRefresh();
             }
         });
 

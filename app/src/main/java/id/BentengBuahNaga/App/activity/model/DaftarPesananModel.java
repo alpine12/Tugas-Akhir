@@ -6,6 +6,8 @@ import id.BentengBuahNaga.App.activity.contract.DaftarPesananContract;
 
 public class DaftarPesananModel implements DaftarPesananContract.Model {
 
+    @SerializedName("potongan")
+    private String potongan;
 
     @SerializedName("kode_promo")
     private String kodePromo;
@@ -39,6 +41,10 @@ public class DaftarPesananModel implements DaftarPesananContract.Model {
 
     @SerializedName("id_pengguna")
     private String idPengguna;
+
+    public String getPotongan() {
+        return potongan;
+    }
 
     public String getKodePromo() {
         return kodePromo;

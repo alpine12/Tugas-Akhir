@@ -1,9 +1,11 @@
 package id.BentengBuahNaga.App.helper;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -14,17 +16,26 @@ import com.google.zxing.Result;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import id.BentengBuahNaga.App.R;
+import id.BentengBuahNaga.App.activity.ResponseModel.ResponseDeffault;
+import id.BentengBuahNaga.App.network.InitRetrofit;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Scanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static final String TAG = "Scanner";
     private ZXingScannerView mScannerView;
     private Toolbar toolbar;
     private FrameLayout frameLayout;
+    private AlertDialog.Builder dialog;
+    private AlertDialog show;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
         mScannerView = new ZXingScannerView(this);
         setContentView(R.layout.activity_scanner);
         toolbar = findViewById(R.id.toolbars);
@@ -37,6 +48,8 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
 
         frameLayout = findViewById(R.id.content_frame);
         frameLayout.addView(mScannerView);
+
+        dialog = new AlertDialog.Builder(this);
 
     }
 
@@ -62,31 +75,67 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
         Log.d(TAG, "handleResult: "+ rawResult.getText());
         Log.d(TAG, "handleResult: "+ rawResult.getBarcodeFormat().toString());
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Scan Result");
-        dialog.setCancelable(false);
-        dialog.setMessage(rawResult.getText());
-        dialog.setNegativeButton("ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-//                mScannerView.setResultHandler(Scanner.this); // Register ourselves as a handler for scan results.
-//                mScannerView.startCamera();          // Start camera on resume
-//                mScannerView.resumeCameraPreview(Scanner.this);
-                Prefs.putString(SharedPreff.getMeja(), rawResult.getText());
-                finish();
-            }
-        });
-        AlertDialog show = dialog.create();
-        show.show();
 
-        if (show.isShowing()){
-            mScannerView.stopCamera();
-
-        }
-
+        checkMeja(rawResult.getText());
 
 
         // If you would like to resume scanning, call this method below:
         //mScannerView.resumeCameraPreview(this);
     }
+
+    private void checkMeja(String meja) {
+        Call<ResponseDeffault> check = InitRetrofit.getInstance().scanMeja(meja);
+
+        check.enqueue(new Callback<ResponseDeffault>() {
+            @Override
+            public void onResponse(Call<ResponseDeffault> call, Response<ResponseDeffault> response) {
+                ResponseDeffault res = response.body();
+                if (res.isStatus()) {
+
+                    dialog.setMessage(meja);
+                    dialog.setTitle("Scan Result");
+                    dialog.setCancelable(false);
+                    dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Prefs.putString(SharedPreff.getMeja(), meja);
+                            finish();
+                        }
+                    });
+
+                    show = dialog.create();
+                    show.show();
+
+                    if (show.isShowing()) {
+                        mScannerView.stopCamera();
+                    }
+
+                } else {
+                    dialog.setMessage(res.getMessage());
+                    dialog.setTitle("Scan Result");
+                    dialog.setCancelable(false);
+                    dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            finish();
+                        }
+                    });
+                    show = dialog.create();
+                    show.show();
+
+                    if (show.isShowing()) {
+                        mScannerView.stopCamera();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDeffault> call, Throwable t) {
+                Toast.makeText(Scanner.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }

@@ -106,4 +106,10 @@ public interface ApiIterface {
     @FormUrlEncoded
     @PUT("data_diri")
     Call<ResponseDeffault> updateDataDiri(@FieldMap HashMap<String,String> data);
+
+    /*
+     * Scan Meja
+     */
+    @GET("scan_meja")
+    Call<ResponseDeffault> scanMeja(@Query("meja") String meja);
 }

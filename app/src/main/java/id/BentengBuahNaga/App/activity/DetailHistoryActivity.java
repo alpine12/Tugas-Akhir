@@ -25,6 +25,7 @@ import id.BentengBuahNaga.App.activity.contract.DetailHistoryTransaksiContract;
 import id.BentengBuahNaga.App.activity.model.DaftarPesananModel;
 import id.BentengBuahNaga.App.activity.model.DetailDaftarPesananModel;
 import id.BentengBuahNaga.App.activity.presenter.DetailHistoryTransaksiPresenter;
+import id.BentengBuahNaga.App.helper.FormatRp;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class DetailHistoryActivity extends AppCompatActivity implements DetailHistoryTransaksiContract.View {
@@ -61,7 +62,7 @@ public class DetailHistoryActivity extends AppCompatActivity implements DetailHi
         total = findViewById(R.id.tv_totalBayar);
         tggljam = findViewById(R.id.tv_tggljamPesan);
         status = findViewById(R.id.tv_statusBayar);
-        jumlah = findViewById(R.id.tv_jumlahPesanan);
+
         cetak = findViewById(R.id.btn_cetakInvoice);
         rvDaftarPesanan = findViewById(R.id.recyclerview);
     }
@@ -78,11 +79,20 @@ public class DetailHistoryActivity extends AppCompatActivity implements DetailHi
         String data = getIntent().getStringExtra("param");
         Gson gson = new Gson();
         DaftarPesananModel item = gson.fromJson(data, DaftarPesananModel.class);
-        kodeTrans.setText(item.getKodeTransaksi());
-        total.setText(item.getTotalPembayaran());
-        tggljam.setText(item.getWaktuTransaksi());
-        status.setText("Pembayaran telah diterima");
-        jumlah.setText("0");
+        kodeTrans.setText(" : "+item.getKodeTransaksi());
+
+        int potongan = 0;
+        if (item.getKodePromo().equals("null")) {
+            potongan = Integer.valueOf(item.getTotalPembayaran());
+        } else {
+            int total_bayar = Integer.parseInt(item.getTotalPembayaran());
+            int diskon = Integer.parseInt(item.getPotongan());
+            potongan = (total_bayar - ((total_bayar * diskon) / 100));
+        }
+
+        total.setText(" : "+ FormatRp.FormatRp(String.valueOf(potongan)));
+        tggljam.setText(" : "+item.getWaktuTransaksi());
+        status.setText(" : "+"Pembayaran telah diterima");
         rvDaftarPesanan.setHasFixedSize(true);
         rvDaftarPesanan.setLayoutManager(new LinearLayoutManager(this));
         presenter.getPesanan(item.getIdPesanan());

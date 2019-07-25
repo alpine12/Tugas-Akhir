@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -27,6 +29,7 @@ import id.BentengBuahNaga.App.activity.model.BerandaFragmentModel;
 import id.BentengBuahNaga.App.activity.model.MenuFavoritModel;
 import id.BentengBuahNaga.App.activity.presenter.BerandaFragmenPresenter;
 import id.BentengBuahNaga.App.helper.FormatRp;
+import id.BentengBuahNaga.App.helper.SharedPreff;
 import id.BentengBuahNaga.App.network.InitRetrofit;
 import id.BentengBuahNaga.App.utils.PindahActivity;
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -123,7 +126,12 @@ public class BerandaFragment extends Fragment implements BerandaFragmenContract.
                     detailMakanan.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            PindahActivity.pindahActivityParam(mContext, DetailMenuTampilan.class, model.getIdMenu());
+
+                            if (kodeMejaTersimpan()){
+                                PindahActivity.pindahActivityParam(mContext, DetailMenuTampilan.class, model.getIdMenu());
+                            }else {
+                                tampilPesan();
+                            }
                         }
                     });
                     break;
@@ -138,7 +146,12 @@ public class BerandaFragment extends Fragment implements BerandaFragmenContract.
                     detailMinuman.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            PindahActivity.pindahActivityParam(mContext, DetailMenuTampilan.class, model.getIdMenu());
+                            if (kodeMejaTersimpan()){
+                                PindahActivity.pindahActivityParam(mContext, DetailMenuTampilan.class, model.getIdMenu());
+                            }else {
+                                tampilPesan();
+                            }
+
                         }
                     });
                     break;
@@ -151,7 +164,11 @@ public class BerandaFragment extends Fragment implements BerandaFragmenContract.
                     detailSnack.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            PindahActivity.pindahActivityParam(mContext, DetailMenuTampilan.class, model.getIdMenu());
+                            if (kodeMejaTersimpan()){
+                                PindahActivity.pindahActivityParam(mContext, DetailMenuTampilan.class, model.getIdMenu());
+                            }else {
+                                tampilPesan();
+                            }
                         }
                     });
                     break;
@@ -159,4 +176,18 @@ public class BerandaFragment extends Fragment implements BerandaFragmenContract.
         }
 
     }
+
+    private Boolean kodeMejaTersimpan(){
+        Boolean isTrue = false;
+
+        if (Prefs.getString(SharedPreff.getMeja(), null) != null){
+            isTrue = true;
+        }
+        return isTrue;
+    }
+
+    private void tampilPesan(){
+        Toast.makeText(mContext, "Harus Memindai Meja Dahulu", Toast.LENGTH_SHORT).show();
+    }
+
 }

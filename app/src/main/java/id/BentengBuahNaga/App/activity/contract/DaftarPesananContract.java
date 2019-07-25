@@ -16,7 +16,7 @@ public interface DaftarPesananContract {
 
         void loadData(List<DaftarPesananModel> item);
 
-        void tampilLoading();
+        void dismisRefresh();
 
         void tampilPesan(String message);
     }

@@ -1,9 +1,12 @@
 package id.BentengBuahNaga.App.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -13,11 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.pixplicity.easyprefs.library.Prefs;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 import id.BentengBuahNaga.App.R;
 import id.BentengBuahNaga.App.activity.contract.DetailAkunContract;
-import id.BentengBuahNaga.App.activity.model.DetailAkunModel;
 import id.BentengBuahNaga.App.activity.presenter.DetailAkunPresenter;
 import id.BentengBuahNaga.App.helper.SharedPreff;
 
@@ -34,6 +37,8 @@ public class DetailAkunActivity extends AppCompatActivity implements DetailAkunC
     private EditText alamat;
     private Button update;
     private Context context;
+    private Calendar cal;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,31 @@ public class DetailAkunActivity extends AppCompatActivity implements DetailAkunC
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        String [] dateParts = Prefs.getString(SharedPreff.getTanggalLahir(), null).split("-");
+        String day = dateParts[2];
+        String month = dateParts[1];
+        String year = dateParts[0];
+
+        tgglLahir.setInputType(InputType.TYPE_NULL);
+        tgglLahir.requestFocus();
+        tgglLahir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        tgglLahir.setText(year + "-" + (++monthOfYear) + "-" + dayOfMonth);
+                    }
+                };
+
+                DatePickerDialog dpDialog = new DatePickerDialog(context, listener,Integer.valueOf(year) , Integer.valueOf(month), Integer.valueOf(day));
+                dpDialog.show();
+
             }
         });
 
