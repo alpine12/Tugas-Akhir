@@ -21,7 +21,7 @@ public class HistoryTransaksiAdapter extends BaseQuickAdapter<DaftarPesananModel
         helper.setText(R.id.tv_kodeTransaksi, " : " + item.getKodeTransaksi());
 
         int potongan = 0;
-        if (item.getKodePromo().equals("null")) {
+        if (item.getKodePromo().equals("0")) {
             potongan = Integer.valueOf(item.getTotalPembayaran());
         } else {
             int total_bayar = Integer.parseInt(item.getTotalPembayaran());

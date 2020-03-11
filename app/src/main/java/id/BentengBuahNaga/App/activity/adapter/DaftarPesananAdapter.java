@@ -74,11 +74,16 @@ public class DaftarPesananAdapter extends RecyclerView.Adapter<DaftarPesananAdap
 
         public void bindItem(DaftarPesananModel item) {
             kodeTrans.setText(" : "+item.getKodeTransaksi());
-            if (item.getKodePromo().equals("null")) {
+            if (item.getKodePromo().equals("0")) {
                 total.setText(" : " + FormatRp.FormatRp(item.getTotalPembayaran()));
             } else {
                 int total_bayar = Integer.parseInt(item.getTotalPembayaran());
-                int diskon = Integer.parseInt(item.getPotongan());
+                int diskon = 0;
+                if (item.getPotongan()==null){
+                    diskon = Integer.parseInt("0");
+                }else {
+                     diskon = Integer.parseInt(item.getPotongan());
+                }
                 int potongan = (total_bayar - ((total_bayar * diskon) / 100));
                 Log.d(TAG, "bindItem: "+potongan+" "+total_bayar+" "+diskon);
                 total.setText(" : "+FormatRp.FormatRp(String.valueOf(potongan)));

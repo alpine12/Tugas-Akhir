@@ -297,7 +297,7 @@ public class KeranjangFragment extends Fragment implements KeranjangFragmentCont
                 kodeMeja = Prefs.getString(SharedPreff.getMeja(), null);
                 idPengguna = "";
                 if (TextUtils.isEmpty(inputPromo.getText().toString())){
-                    kodePromo = "null";
+                    kodePromo = "0";
                 }else {
                     kodePromo = inputPromo.getText().toString();
                 }

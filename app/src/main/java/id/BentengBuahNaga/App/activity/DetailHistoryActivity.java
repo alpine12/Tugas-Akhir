@@ -82,7 +82,7 @@ public class DetailHistoryActivity extends AppCompatActivity implements DetailHi
         kodeTrans.setText(" : "+item.getKodeTransaksi());
 
         int potongan = 0;
-        if (item.getKodePromo().equals("null")) {
+        if (item.getKodePromo().equals("0")) {
             potongan = Integer.valueOf(item.getTotalPembayaran());
         } else {
             int total_bayar = Integer.parseInt(item.getTotalPembayaran());
@@ -101,7 +101,7 @@ public class DetailHistoryActivity extends AppCompatActivity implements DetailHi
             @Override
             public void onClick(View view) {
                 try {
-                    String URL = "http://google.com";
+                    String URL = "https://manajemen.hometech.web.id/invoice/struk/"+item.getIdPesanan();
                     Uri webpage = Uri.parse(URL);
                     Intent myIntent = new Intent(Intent.ACTION_VIEW, webpage);
                     startActivity(myIntent);
