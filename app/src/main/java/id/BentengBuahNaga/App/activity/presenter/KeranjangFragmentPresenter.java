@@ -127,6 +127,9 @@ public class KeranjangFragmentPresenter implements KeranjangFragmentContract.Pre
                         view.tampilPesan(res.getMessage());
                         view.tutupLoading();
                     }
+                }else {
+                    view.tampilPesan(res.getMessage());
+                    view.tutupLoading();
                 }
             }
 

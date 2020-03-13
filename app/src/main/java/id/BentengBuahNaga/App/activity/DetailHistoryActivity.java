@@ -101,7 +101,7 @@ public class DetailHistoryActivity extends AppCompatActivity implements DetailHi
             @Override
             public void onClick(View view) {
                 try {
-                    String URL = "https://manajemen.hometech.web.id/invoice/struk/"+item.getIdPesanan();
+                    String URL = "https://manajemen.buatinweb.my.id/invoice/struk/"+item.getIdPesanan();
                     Uri webpage = Uri.parse(URL);
                     Intent myIntent = new Intent(Intent.ACTION_VIEW, webpage);
                     startActivity(myIntent);
