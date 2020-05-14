@@ -19,7 +19,7 @@ public class InitRetrofit {
 //    private static final String IMAGEURL = URL+"simcafe/assets/img/foto_menu/";
 //    private static final String IMAGEURL_BANNER = URL+"simcafe/assets/img/banner_web/";
 
-    private static final String BASE_URL ="https://buatinweb.my.id/api_client/";
+    private static final String BASE_URL = "https://manajemen.buatinweb.my.id/api_client/";
     private static final String ASSETS = "https://manajemen.buatinweb.my.id/assets/img/";
     private static final String IMAGEURL = ASSETS+"foto_menu/";
     private static final String IMAGEURL_BANNER = ASSETS+"banner_web/";

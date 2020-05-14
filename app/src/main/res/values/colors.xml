@@ -8,7 +8,6 @@
     <color name="white">#ffffff</color>
     <color name="pomegranate">#c0392b</color>
     <color name="alizarin">#e74c3c</color>
-    <color name="customcolor">@drawable/custom_color</color>
     <color name="background">#bdc3c7</color>
     <color name="carrot">#e67e22</color>
     <color name="junebud">#badc58</color>

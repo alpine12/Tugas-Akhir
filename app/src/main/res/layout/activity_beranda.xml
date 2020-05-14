@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/pomegranate"
-            app:itemIconTint="@color/customcolor"
+            app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
